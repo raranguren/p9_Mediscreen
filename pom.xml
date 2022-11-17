@@ -6,16 +6,22 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.7.5</version>
-        <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
     <groupId>com.mediscreen</groupId>
-    <artifactId>Clinique_Abernathy</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>p9_Mediscreen</name>
-    <description>p9_Mediscreen</description>
+    <artifactId>abernathy</artifactId>
+    <version>1.0.0</version>
+    <name>Clinique Abernathy</name>
     <properties>
         <java.version>11</java.version>
     </properties>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>web</module>
+        <module>api</module>
+    </modules>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
