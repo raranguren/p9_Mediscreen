@@ -18,8 +18,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>web</module>
-        <module>api</module>
+        <module>src-8080-web</module>
+        <module>src-8081-api-patient</module>
     </modules>
 
     <dependencies>

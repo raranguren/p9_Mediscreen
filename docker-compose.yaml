@@ -17,7 +17,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: api
+      target: api-patient
     container_name: api-patient
     ports:
       - "8081:8081"
