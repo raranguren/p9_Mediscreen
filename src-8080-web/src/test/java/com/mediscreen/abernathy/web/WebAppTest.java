@@ -1,10 +1,10 @@
-package com.mediscreen.abernathy.api;
+package com.mediscreen.abernathy.web;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ApiRestAppTests {
+class WebAppTest {
 
     @Test
     void contextLoads() {

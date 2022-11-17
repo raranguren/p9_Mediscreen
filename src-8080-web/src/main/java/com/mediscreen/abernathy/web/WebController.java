@@ -9,10 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class WebController {
 
+    public static final String ENDPOINT_HELLO = "/hello";
     @Autowired
     WebService service;
 
-    @GetMapping("hello")
+    @GetMapping(ENDPOINT_HELLO)
     public ModelAndView test(ModelMap model) {
         model.addAttribute("hello", service.hello());
         return new ModelAndView("hello", model);
