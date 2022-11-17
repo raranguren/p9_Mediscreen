@@ -15,5 +15,17 @@
         <version>1.0.0</version>
     </parent>
 
+    <dependencies>
+        <dependency>
+            <!-- WebClient -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <dependency>
+            <!-- Thymeleaf -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>
