@@ -2,9 +2,16 @@
 
 A learning exercise about separating features into microservices.
 
-## Technical:
+## Technical specifications:
 
-1. Framework: Spring Boot 2.7.5
-2. Java 11
-3. Thymeleaf
-4. Bootstrap 5.2
+The project uses the following technologies:
+- Docker
+- Maven
+- Java 11
+- Spring Boot 2.7
+- Thymeleaf
+- Bootstrap 5
+- MySQL
+- MongoDB
+
+Thanks to backwards compatibility, the containers run Java 19.
