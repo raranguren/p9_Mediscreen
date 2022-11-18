@@ -1,5 +1,7 @@
 package com.mediscreen.abernathy.api;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.util.MultiValueMap;
 import org.springframework.validation.annotation.Validated;
 
@@ -7,6 +9,8 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Validated
+@Getter
+@Setter
 public class PatientDTO {
 
     @Positive
@@ -20,9 +24,9 @@ public class PatientDTO {
     @Size(max = 20)
     public String given;
 
-    @NotNull
-    @Past
-    public LocalDate dob;
+    @NotBlank
+    @Pattern(regexp = "\\d\\d\\d\\d[-/]\\d\\d[-/]\\d\\d")
+    public String dob;
 
     @NotBlank
     @Pattern(regexp = "[MF]")
@@ -33,7 +37,7 @@ public class PatientDTO {
     public String address;
 
     @NotBlank
-    @Pattern(regexp = "\\d\\d\\d-\\d\\d\\d-\\d\\d\\d\\d")
+    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
     public String phone;
 
     public static PatientDTO instanceFrom(MultiValueMap<String, String> map) {
@@ -42,8 +46,7 @@ public class PatientDTO {
         if (id != null) dto.id = Long.parseLong(id);
         dto.family = map.getFirst("family");
         dto.given = map.getFirst("given");
-        var dob = map.getFirst("dob");
-        if (dob != null) dto.dob = LocalDate.parse(dob);
+        dto.dob = map.getFirst("dob");
         dto.sex = map.getFirst("sex");
         dto.address = map.getFirst("address");
         dto.phone = map.getFirst("phone");
@@ -55,10 +58,11 @@ public class PatientDTO {
         entity.id = id;
         entity.family = family;
         entity.given = given;
-        entity.dob = dob;
+        if (dob != null) entity.dob = LocalDate.parse(dob);
         entity.sex = sex;
         entity.address = address;
         entity.phone = phone;
         return entity;
     }
+
 }
