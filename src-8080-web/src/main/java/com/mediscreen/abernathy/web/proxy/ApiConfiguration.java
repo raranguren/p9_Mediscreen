@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.web;
+package com.mediscreen.abernathy.web.proxy;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -9,7 +9,7 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @Configuration
-public class WebConfiguration {
+public class ApiConfiguration {
 
     @Value("${api-url}")
     private String API_URL;

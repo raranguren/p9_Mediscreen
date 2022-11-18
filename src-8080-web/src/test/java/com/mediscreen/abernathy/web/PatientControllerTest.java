@@ -9,18 +9,18 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@WebMvcTest(WebController.class)
-public class WebControllerTest {
+@WebMvcTest(PatientController.class)
+public class PatientControllerTest {
 
     @Autowired
     MockMvc mvc;
 
     @MockBean
-    WebService service;
+    PatientService service;
 
     @Test
-    public void compiles_thymeleaf_for_hello() throws Exception {
-        mvc.perform(get(WebController.ENDPOINT_HELLO))
+    public void add_form_compiles() throws Exception {
+        mvc.perform(get("/patient/add"))
                 .andExpect(status().is2xxSuccessful());
     }
 
