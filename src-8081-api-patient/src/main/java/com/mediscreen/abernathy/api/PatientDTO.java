@@ -1,7 +1,5 @@
 package com.mediscreen.abernathy.api;
 
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.util.MultiValueMap;
 import org.springframework.validation.annotation.Validated;
 
@@ -9,35 +7,33 @@ import javax.validation.constraints.*;
 import java.time.LocalDate;
 
 @Validated
-@Getter
-@Setter
 public class PatientDTO {
 
-    @Positive(message = "Must be greater than zero")
+    @Positive
     public Long id;
 
-    @NotBlank(message = "Required")
-    @Size(max = 20, message = "Maximum size {max} characters")
+    @NotBlank
+    @Size(max = 20)
     public String family;
 
-    @NotBlank(message = "Required")
-    @Size(max = 20, message = "Maximum size {max} characters")
+    @NotBlank
+    @Size(max = 20)
     public String given;
 
-    @NotBlank(message = "Required")
-    @Pattern(regexp = "\\d\\d\\d\\d[-/]\\d\\d[-/]\\d\\d", message = "Date format is YYYY-MM-DD")
+    @NotBlank
+    @Pattern(regexp = "\\d\\d\\d\\d[-/]\\d\\d[-/]\\d\\d")
     public String dob;
 
-    @NotBlank(message = "Required")
-    @Pattern(regexp = "[MF]", message = "M or F")
+    @NotBlank
+    @Pattern(regexp = "[MF]")
     public String sex;
 
-    @NotBlank(message = "Required")
-    @Size(max = 80, message = "Maximum size {max} characters")
+    @NotBlank
+    @Size(max = 80)
     public String address;
 
-    @NotBlank(message = "Required")
-    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d", message = "Phone must have 10 digits (123-456-7890)")
+    @NotBlank
+    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
     public String phone;
 
     public static PatientDTO instanceFrom(MultiValueMap<String, String> map) {

@@ -1,6 +1,6 @@
 package com.mediscreen.abernathy.web;
 
-import com.mediscreen.abernathy.api.PatientDTO;
+import com.mediscreen.abernathy.web.dto.Patient;
 import com.mediscreen.abernathy.web.proxy.ApiProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,22 +18,22 @@ public class PatientService {
         this.api = api;
     }
 
-    public void create(PatientDTO patient) {
+    public void create(Patient patient) {
         patient.id = null;
         api.add(patient);
     }
 
-    public List<PatientDTO> readAll() {
+    public List<Patient> readAll() {
         // TODO
         return Collections.emptyList();
     }
 
-    public Optional<PatientDTO> read(Long id) {
+    public Optional<Patient> read(Long id) {
         // TODO
         return Optional.empty();
     }
 
-    public void update(PatientDTO patient) {
+    public void update(Patient patient) {
         // TODO
     }
 

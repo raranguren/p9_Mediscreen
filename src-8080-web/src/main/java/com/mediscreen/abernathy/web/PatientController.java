@@ -1,6 +1,6 @@
 package com.mediscreen.abernathy.web;
 
-import com.mediscreen.abernathy.api.PatientDTO;
+import com.mediscreen.abernathy.web.dto.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,12 +21,12 @@ public class PatientController {
     }
 
     @GetMapping("/patient/add")
-    public String addForm(PatientDTO patient) {
+    public String addForm(Patient patient) {
         return "patient/add";
     }
 
     @PostMapping("/patient/add")
-    public String add(@Valid PatientDTO patient, BindingResult result, Model model) {
+    public String add(@Valid Patient patient, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "patient/add";
         }
@@ -45,7 +45,7 @@ public class PatientController {
     }
 
     @PostMapping("/patient/update/{id}")
-    public String update(@PathVariable("id") Long id, @Valid PatientDTO patient,
+    public String update(@PathVariable("id") Long id, @Valid Patient patient,
                          BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "patient/update";

@@ -1,6 +1,6 @@
 package com.mediscreen.abernathy.web.proxy;
 
-import com.mediscreen.abernathy.api.PatientDTO;
+import com.mediscreen.abernathy.web.dto.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -16,8 +16,8 @@ public class ApiProxy {
         this.client = client;
     }
 
-    public Optional<PatientDTO> add(PatientDTO patient) {
+    public Optional<Patient> add(Patient patient) {
         return client.post().uri("/patient/add").bodyValue(patient)
-                .retrieve().bodyToMono(PatientDTO.class).blockOptional();
+                .retrieve().bodyToMono(Patient.class).blockOptional();
     }
 }
