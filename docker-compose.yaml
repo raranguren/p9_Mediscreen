@@ -14,6 +14,8 @@ services:
       - 8080
 
   8081_api:
+    depends_on:
+      - db
     build:
       context: .
       dockerfile: Dockerfile
@@ -24,8 +26,22 @@ services:
     expose:
       - 8081
 
-  mysql:
-    image: mysql
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: mysql-with-tables
     container_name: mysql
     environment:
-      MYSQL_ROOT_PASSWORD: "password"
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: mediscreen
+    ports:
+      - "127.0.0.1:3308:3306" #exposed only in localhost
+
+  8084-adminer:
+    depends_on:
+      - db
+    image: adminer
+    container_name: adminer
+    ports:
+      - "127.0.0.1:8084:8080" #exposed only in localhost
