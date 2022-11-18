@@ -13,31 +13,31 @@ import java.time.LocalDate;
 @Setter
 public class PatientDTO {
 
-    @Positive
+    @Positive(message = "Must be greater than zero")
     public Long id;
 
-    @NotBlank
-    @Size(max = 20)
+    @NotBlank(message = "Required")
+    @Size(max = 20, message = "Maximum size {max} characters")
     public String family;
 
-    @NotBlank
-    @Size(max = 20)
+    @NotBlank(message = "Required")
+    @Size(max = 20, message = "Maximum size {max} characters")
     public String given;
 
-    @NotBlank
-    @Pattern(regexp = "\\d\\d\\d\\d[-/]\\d\\d[-/]\\d\\d")
+    @NotBlank(message = "Required")
+    @Pattern(regexp = "\\d\\d\\d\\d[-/]\\d\\d[-/]\\d\\d", message = "Date format is YYYY-MM-DD")
     public String dob;
 
-    @NotBlank
-    @Pattern(regexp = "[MF]")
+    @NotBlank(message = "Required")
+    @Pattern(regexp = "[MF]", message = "M or F")
     public String sex;
 
-    @NotBlank
-    @Size(max = 80)
+    @NotBlank(message = "Required")
+    @Size(max = 80, message = "Maximum size {max} characters")
     public String address;
 
-    @NotBlank
-    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
+    @NotBlank(message = "Required")
+    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d", message = "Phone must have 10 digits (123-456-7890)")
     public String phone;
 
     public static PatientDTO instanceFrom(MultiValueMap<String, String> map) {
