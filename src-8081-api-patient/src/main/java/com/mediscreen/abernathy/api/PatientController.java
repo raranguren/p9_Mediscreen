@@ -7,6 +7,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -19,9 +20,14 @@ public class PatientController {
         this.service = service;
     }
 
+    @GetMapping("list")
+    public List<PatientDTO> list() {
+        return service.readAll();
+    }
+
     @PostMapping("add")
     @ResponseStatus(HttpStatus.CREATED)
-    public Patient add(@Valid @RequestBody PatientDTO patientDTO) {
+    public Patient create(@Valid @RequestBody PatientDTO patientDTO) {
         return service.add(patientDTO);
     }
 
@@ -29,7 +35,7 @@ public class PatientController {
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public Patient AddUrlEncoded(@RequestBody MultiValueMap<String, String> map) {
-        return add(PatientDTO.instanceFrom(map));
+        return create(new PatientDTO(map));
     }
 
 }

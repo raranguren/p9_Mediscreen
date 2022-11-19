@@ -5,6 +5,7 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Validated
 public class PatientDTO {
@@ -36,17 +37,25 @@ public class PatientDTO {
     @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
     public String phone;
 
-    public static PatientDTO instanceFrom(MultiValueMap<String, String> map) {
-        var dto = new PatientDTO();
+    public PatientDTO() {}
+    public PatientDTO(MultiValueMap<String, String> map) {
         var id = map.getFirst("id");
-        if (id != null) dto.id = Long.parseLong(id);
-        dto.family = map.getFirst("family");
-        dto.given = map.getFirst("given");
-        dto.dob = map.getFirst("dob");
-        dto.sex = map.getFirst("sex");
-        dto.address = map.getFirst("address");
-        dto.phone = map.getFirst("phone");
-        return dto;
+        if (id != null) this.id = Long.parseLong(id);
+        this.family = map.getFirst("family");
+        this.given = map.getFirst("given");
+        this.dob = map.getFirst("dob");
+        this.sex = map.getFirst("sex");
+        this.address = map.getFirst("address");
+        this.phone = map.getFirst("phone");
+    }
+    public PatientDTO(Patient entity) {
+        this.id = entity.id;
+        this.family = entity.family;
+        this.given = entity.given;
+        this.dob = entity.dob.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        this.sex = entity.sex;
+        this.address = entity.address;
+        this.phone = entity.phone;
     }
 
     public Patient toEntity() {
