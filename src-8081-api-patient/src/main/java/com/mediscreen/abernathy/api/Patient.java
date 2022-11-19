@@ -19,6 +19,6 @@ public class Patient {
     public LocalDate dob;
     public String sex;
     public String address;
-    public String phone;
+    public Long phone;
 
 }

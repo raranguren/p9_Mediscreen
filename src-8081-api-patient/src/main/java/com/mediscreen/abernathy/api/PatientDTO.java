@@ -40,7 +40,7 @@ public class PatientDTO {
     public PatientDTO() {}
     public PatientDTO(MultiValueMap<String, String> map) {
         var id = map.getFirst("id");
-        if (id != null) this.id = Long.parseLong(id);
+        this.id = id == null ? null : Long.parseLong(id);
         this.family = map.getFirst("family");
         this.given = map.getFirst("given");
         this.dob = map.getFirst("dob");
@@ -52,10 +52,10 @@ public class PatientDTO {
         this.id = entity.id;
         this.family = entity.family;
         this.given = entity.given;
-        this.dob = entity.dob.format(DateTimeFormatter.ISO_LOCAL_DATE);
+        this.dob = entity.dob == null ? null : entity.dob.format(DateTimeFormatter.ISO_LOCAL_DATE);
         this.sex = entity.sex;
         this.address = entity.address;
-        this.phone = entity.phone;
+        this.phone = addHypens(entity.phone);
     }
 
     public Patient toEntity() {
@@ -66,8 +66,24 @@ public class PatientDTO {
         if (dob != null) entity.dob = LocalDate.parse(dob);
         entity.sex = sex;
         entity.address = address;
-        entity.phone = phone;
+        entity.phone = removeHypens(phone);
         return entity;
+    }
+
+    // phone number manipulation
+    
+    private Long removeHypens(String phoneText) {
+        try {
+            return Long.parseLong(phoneText.replaceAll("\\D", ""));
+        } catch (NumberFormatException e ) {
+            return null;
+        }
+    }
+    
+    private String addHypens(Long phoneNumber) {
+        if (phoneNumber == null) return null;
+        return String.valueOf(phoneNumber)
+                .replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
     }
 
 }

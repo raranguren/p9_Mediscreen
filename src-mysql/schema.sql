@@ -17,6 +17,6 @@ CREATE TABLE patient
     dob     DATE                  NOT NULL,
     sex     CHAR,
     address VARCHAR(40),
-    phone   VARCHAR(12),
+    phone   BIGINT,
     PRIMARY KEY (id)
 );
