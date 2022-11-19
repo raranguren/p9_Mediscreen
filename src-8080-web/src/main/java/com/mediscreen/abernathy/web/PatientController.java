@@ -20,6 +20,17 @@ public class PatientController {
         this.service = service;
     }
 
+    @GetMapping("/patient")
+    public String baseDir() {
+        return "redirect:/patient/list";
+    }
+
+    @GetMapping("/patient/list")
+    public String list(Model model) {
+        model.addAttribute("list", service.readAll());
+        return "patient/list";
+    }
+
     @GetMapping("/patient/add")
     public String addForm(Patient patient) {
         return "patient/add";
@@ -56,7 +67,7 @@ public class PatientController {
     }
 
     @GetMapping("/patient/delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Model model) {
+    public String delete(@PathVariable("id") Long id, Model model) {
         service.delete(id);
         return "redirect:/patient/list";
     }

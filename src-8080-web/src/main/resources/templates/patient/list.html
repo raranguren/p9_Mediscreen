@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments :: html_head(~{ :: title})">
+    <title>Patients</title>
+</head>
+<body>
+
+<nav th:insert="fragments :: nav"></nav>
+
+<div th:insert="fragments :: card('Patients', ~{ :: .card-content})">
+    <section class="card-content">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Nom de famille</th>
+                <th>Prénom</th>
+                <th>Né(e) le</th>
+                <th>Sexe</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item: ${list}">
+                <td th:text="${item.family}"></td>
+                <td th:text="${item.given}"></td>
+                <td th:text="${item.dob}"></td>
+                <td th:text="${item.sex}"></td>
+                <td th:text="${item.address}"></td>
+                <td th:text="${item.phone}"></td>
+                <td>
+                    <a th:href="@{update/{id}(id=${item.id})}" class="btn-link text-decoration-none text-primary">Modifier</a>
+                    |
+                    <a th:href="@{delete/{id}(id=${item.id})}" class="btn-link text-decoration-none text-primary">Supprimer</a>
+                </td>
+            </tr>
+            <tr class="align-middle">
+                <td colspan="6">
+                    <div th:if="${list.isEmpty()}" class="alert alert-info text-center">La liste de patients est vide</div>
+                </td>
+                <td>
+                    <a th:href="@{add}" class="btn btn-sm btn-primary">Ajouter</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</div>
+
+<footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>

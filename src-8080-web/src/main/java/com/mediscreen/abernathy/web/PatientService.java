@@ -5,7 +5,6 @@ import com.mediscreen.abernathy.web.proxy.ApiProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,21 +23,18 @@ public class PatientService {
     }
 
     public List<Patient> readAll() {
-        // TODO
-        return Collections.emptyList();
+        return api.readAll();
     }
 
     public Optional<Patient> read(Long id) {
-        // TODO
-        return Optional.empty();
+        return api.read(id);
     }
 
     public void update(Patient patient) {
-        // TODO
+        api.update(patient);
     }
 
-    public void delete(Integer id) {
-        // TODO
+    public void delete(Long id) {
+        api.delete(id);
     }
-
 }

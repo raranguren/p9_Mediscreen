@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments :: html_head(~{ :: title})">
-    <title>Ajouter un patient</title>
+    <title>Mise à jour du patient</title>
 </head>
 <body>
 
 <nav th:insert="fragments :: nav"></nav>
 
-<div th:insert="fragments :: card('Ajouter un patient', ~{ :: .card-content})">
+<div th:insert="fragments :: card('Mise à jour du patient', ~{ :: .card-content})">
     <section class="card-content">
-        <form class="g-5" action=# method="post" th:object="${patient}">
+        <form class="g-5" method="post" th:action="@{{id}(id=${patient.id})}" th:object="${patient}">
             <div th:replace="fragments :: patient_fields"></div>
             <div class="mt-5 text-center">
-                <button type="submit" class="btn btn-primary btn-lg mx-3">Ajouter</button>
+                <button type="submit" class="btn btn-primary btn-lg mx-3">Mettre à jour</button>
                 <a class="btn btn-secondary btn-lg mx-3" th:href="@{list}" role="button">Annuler</a>
             </div>
         </form>
