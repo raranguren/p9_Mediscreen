@@ -28,4 +28,18 @@ public class PatientService {
                 .collect(Collectors.toList());
     }
 
+    public PatientDTO update(PatientDTO patientDTO) {
+        if (!repository.existsById(patientDTO.id)) return null;
+        Patient patient = patientDTO.toEntity();
+        patient = repository.save(patient);
+        return new PatientDTO(patient);
+    }
+
+    public PatientDTO delete(Long id) {
+        var search = repository.findById(id);
+        if (search.isEmpty()) return null;
+        Patient patient = search.get();
+        repository.delete(patient);
+        return new PatientDTO(patient);
+    }
 }

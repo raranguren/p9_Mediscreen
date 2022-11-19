@@ -9,12 +9,12 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PatientServiceTest {
@@ -57,5 +57,36 @@ public class PatientServiceTest {
         when(repository.findAll()).thenReturn(List.of(dto.toEntity()));
         var result = service.readAll();
         assertEquals(dto.phone, result.get(0).phone);
+    }
+
+    @Test
+    void when_update_with_id_then_success() {
+        var dto = new PatientDTO();
+        dto.id = 1L;
+        when(repository.existsById(1L)).thenReturn(true);
+        service.update(dto);
+        verify(repository).save(any());
+    }
+
+    @Test
+    void when_update_with_no_id_then_fail() {
+        service.update(new PatientDTO());
+        verify(repository, times(0)).save(any());
+    }
+
+    @Test
+    void when_update_with_wrong_id_then_fail() {
+        var dto = new PatientDTO();
+        dto.id = 0L;
+        when(repository.existsById(0L)).thenReturn(false);
+        service.update(dto);
+        verify(repository, times(0)).save(any());
+    }
+
+    @Test
+    void when_delete_then_success() {
+        when(repository.findById(1L)).thenReturn(Optional.of(new Patient()));
+        service.delete(1L);
+        verify(repository).delete(any());
     }
 }

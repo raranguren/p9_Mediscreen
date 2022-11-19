@@ -38,4 +38,16 @@ public class PatientController {
         return create(new PatientDTO(map));
     }
 
+    @PostMapping("update")
+    @ResponseStatus(HttpStatus.OK)
+    public PatientDTO update(@Valid @RequestBody PatientDTO patientDTO) {
+        return service.update(patientDTO);
+    }
+
+    @GetMapping("delete/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public PatientDTO delete(@PathVariable Long id) {
+        return service.delete(id);
+    }
+
 }
