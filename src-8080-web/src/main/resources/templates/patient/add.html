@@ -1,88 +1,88 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Add patient</title>
-    <link rel="stylesheet" href="/webjars/bootstrap/5.2.2/css/bootstrap.min.css">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments :: html_head(~{ :: title})">
+    <title>Ajouter un patient</title>
 </head>
-
 <body>
 
-<section class="container">
-    <form class="row g-3" action=# method="post"
-          th:action="@{/patient/add}" th:object="${patient}">
-        <h1>Patient file</h1>
-        <div class="mb-3 row">
-            <label for="family" class="col-lg-2 col-form-label fw-bold">Family name *</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="family"
-                       th:field="*{family}" required>
-                <div class="text-danger"
-                     th:if="${#fields.hasErrors('family')}" th:errors="*{family}"></div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="given" class="col-lg-2 col-form-label fw-bold">Given name *</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="given"
-                       th:field="*{given}" required>
-                <div class="text-danger"
-                     th:if="${#fields.hasErrors('given')}" th:errors="*{given}"></div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="dob" class="col-lg-2 col-form-label fw-bold">Date of birth *</label>
-            <div class="col-lg-10">
-                <input type="date" class="form-control" id="dob"
-                       th:field="*{dob}" required>
-                <div class="text-danger"
-                     th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
-            </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="sex" class="col-lg-2 col-form-label fw-bold">Sex *</label>
-            <div class="col-lg-10" id="sex">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" id="sex-m"
-                           th:field="*{sex}" value="M" required>
-                    <label class="form-check-label" for="sex-m">Male</label>
+<nav th:insert="fragments :: nav"></nav>
+
+<div th:insert="fragments :: card('Ajouter un patient', ~{ :: .card-content})">
+    <section class="card-content">
+        <form class="g-5" action=# method="post"
+              th:action="@{/patient/add}" th:object="${patient}">
+            <div class="mb-3 d-lg-flex">
+               <label for="family" class="form-label label-left text-nowrap pt-2 me-4">
+                    Nom de famille *
+                </label>
+                <div class="">
+                    <input type="text" class="form-control" id="family"
+                           th:field="*{family}" required>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('family')}" th:errors="*{family}"></div>
                 </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="sex" id="sex-f"
-                           th:field="*{sex}" value="F" required>
-                    <label class="form-check-label" for="sex-f">Female</label>
+            </div>
+            <div class="mb-3 d-lg-flex">
+                <label for="given" class="form-label label-left text-nowrap pt-2 me-4">Prénom *</label>
+                <div class="">
+                    <input type="text" class="form-control" id="given"
+                           th:field="*{given}" required>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('given')}" th:errors="*{given}"></div>
                 </div>
-                <div class="text-danger"
-                     th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="address" class="col-lg-2 col-form-label fw-bold">Address *</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="address"
-                       th:field="*{address}" required>
-                <div class="text-danger"
-                     th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+            <div class="mb-3 d-lg-flex">
+                <label for="dob" class="form-label label-left text-nowrap pt-2 me-4">Date de naissance *</label>
+                <div class="">
+                    <input type="date" class="form-control" id="dob"
+                           th:field="*{dob}" required>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <label for="phone" class="col-lg-2 col-form-label fw-bold">Phone *</label>
-            <div class="col-lg-10">
-                <input type="text" class="form-control" id="phone"
-                       pattern="\d\d\d-?\d\d\d-?\d\d\d\d" placeholder="000-000-0000"
-                       th:field="*{phone}" required>
-                <div class="text-danger"
-                     th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+            <div class="mb-3 d-lg-flex">
+                <label for="sex" class="form-label label-left text-nowrap pt-2 me-4">Sexe *</label>
+                <div class="" id="sex">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex-m"
+                               th:field="*{sex}" value="M" required>
+                        <label class="form-check-label" for="sex-m">Male</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sex" id="sex-f"
+                               th:field="*{sex}" value="F" required>
+                        <label class="form-check-label" for="sex-f">Female</label>
+                    </div>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></div>
+                </div>
             </div>
-        </div>
-        <div class="mb-3 row">
-            <div class="offset-lg-2 col-lg-10" id="buttons">
-                <button type="submit" class="btn btn-primary">Save</button>
-                <a class="btn btn-secondary" th:href="@{list}" role="button">Link</a>
+            <div class="mb-3 d-lg-flex">
+                <label for="address" class="form-label label-left text-nowrap pt-2 me-4">Adresse *</label>
+                <div class="">
+                    <input type="text" class="form-control" id="address"
+                           th:field="*{address}" required>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+                </div>
             </div>
-        </div>
-    </form>
-</section>
+            <div class="mb-3 d-lg-flex">
+                <label for="phone" class="form-label label-left text-nowrap pt-2 me-4">Téléphone *</label>
+                <div class="">
+                    <input type="text" class="form-control" id="phone"
+                           pattern="\d\d\d-?\d\d\d-?\d\d\d\d" placeholder="000-000-0000"
+                           th:field="*{phone}" required>
+                    <div class="text-danger"
+                         th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
+                </div>
+            </div>
+            <div class="mt-5 text-center">
+                <button type="submit" class="btn btn-primary btn-lg mx-3">Ajouter</button>
+                <a class="btn btn-secondary btn-lg mx-3" th:href="@{list}" role="button">Annuler</a>
+            </div>
+        </form>
+    </section>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,13 @@
+body {
+    background-color: #9ECEDB
+}
+
+.card {
+    background-color: #fff;
+    border: none;
+    border-radius: 12px
+}
+
+.label-left {
+    width: 10em;
+}
