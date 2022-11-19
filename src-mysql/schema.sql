@@ -16,7 +16,7 @@ CREATE TABLE patient
     given   VARCHAR(20)           NOT NULL,
     dob     DATE                  NOT NULL,
     sex     CHAR,
-    address VARCHAR(80),
+    address VARCHAR(40),
     phone   VARCHAR(12),
     PRIMARY KEY (id)
 );

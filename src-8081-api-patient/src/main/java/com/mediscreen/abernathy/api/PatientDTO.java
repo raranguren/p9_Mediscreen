@@ -30,7 +30,7 @@ public class PatientDTO {
     public String sex;
 
     @NotBlank
-    @Size(max = 80)
+    @Size(max = 40)
     public String address;
 
     @NotBlank
