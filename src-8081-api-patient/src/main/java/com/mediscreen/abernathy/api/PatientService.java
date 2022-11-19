@@ -26,4 +26,5 @@ public class PatientService {
                 .stream().map(PatientDTO::new)
                 .collect(Collectors.toList());
     }
+
 }
