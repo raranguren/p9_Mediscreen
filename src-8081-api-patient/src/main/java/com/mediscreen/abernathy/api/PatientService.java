@@ -15,10 +15,11 @@ public class PatientService {
         this.repository = repository;
     }
 
-    public Patient add(PatientDTO dto) {
+    public PatientDTO add(PatientDTO dto) {
         var patient = dto.toEntity();
         patient.id = null;
-        return repository.save(patient);
+        patient = repository.save(patient);
+        return new PatientDTO(patient);
     }
 
     public List<PatientDTO> readAll() {

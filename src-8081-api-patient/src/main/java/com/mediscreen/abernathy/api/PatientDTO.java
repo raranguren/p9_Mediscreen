@@ -39,6 +39,7 @@ public class PatientDTO {
 
     public PatientDTO() {}
     public PatientDTO(MultiValueMap<String, String> map) {
+        if (map == null) return;
         var id = map.getFirst("id");
         this.id = id == null ? null : Long.parseLong(id);
         this.family = map.getFirst("family");
@@ -49,6 +50,7 @@ public class PatientDTO {
         this.phone = map.getFirst("phone");
     }
     public PatientDTO(Patient entity) {
+        if (entity == null) return;
         this.id = entity.id;
         this.family = entity.family;
         this.given = entity.given;
@@ -75,7 +77,7 @@ public class PatientDTO {
     private Long removeHypens(String phoneText) {
         try {
             return Long.parseLong(phoneText.replaceAll("\\D", ""));
-        } catch (NumberFormatException e ) {
+        } catch (NumberFormatException | NullPointerException e ) {
             return null;
         }
     }
