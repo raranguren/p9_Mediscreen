@@ -41,6 +41,13 @@
     </div>
 </nav>
 
+<!-- FOOTER POWERED-BY  --
+    Usage: <footer th:insert="fragments :: footer"></footer>
+    -->
+<footer th:fragment="footer" class="sticky-bottom text-center text-black p-2">
+    Propulsé par <a class="fw-bold text-black" href="#">Mediscreen</a>
+</footer>
+
 <!-- CARD SECTION --
     Usage:
     <div th:insert="fragments :: card('My card title', ~{ :: .card-content})">
@@ -50,7 +57,7 @@
 <div th:fragment="card(card_title, card_body)"
      class="mt-5 mb-5 d-flex justify-content-center">
     <div class="card px-1 py-2">
-        <div class="card-body m-4">
+        <div class="card-body m-sm-4">
             <h1 class="card-title mb-5" th:text="${card_title}">card title</h1>
             <div th:replace="${card_body}"></div>
         </div>

@@ -11,67 +11,66 @@
     <section class="card-content">
         <form class="g-5" action=# method="post"
               th:action="@{/patient/add}" th:object="${patient}">
-            <div class="mb-3 d-lg-flex">
+            <div class="mb-3 d-sm-flex">
                <label for="family" class="form-label label-left text-nowrap pt-2 me-4">
                     Nom de famille *
                 </label>
                 <div class="">
                     <input type="text" class="form-control" id="family"
-                           th:field="*{family}" required>
+                           th:field="*{family}">
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('family')}" th:errors="*{family}"></div>
                 </div>
             </div>
-            <div class="mb-3 d-lg-flex">
+            <div class="mb-3 d-sm-flex">
                 <label for="given" class="form-label label-left text-nowrap pt-2 me-4">Prénom *</label>
                 <div class="">
                     <input type="text" class="form-control" id="given"
-                           th:field="*{given}" required>
+                           th:field="*{given}">
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('given')}" th:errors="*{given}"></div>
                 </div>
             </div>
-            <div class="mb-3 d-lg-flex">
+            <div class="mb-3 d-sm-flex">
                 <label for="dob" class="form-label label-left text-nowrap pt-2 me-4">Date de naissance *</label>
                 <div class="">
                     <input type="date" class="form-control" id="dob"
-                           th:field="*{dob}" required>
+                           th:field="*{dob}">
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('dob')}" th:errors="*{dob}"></div>
                 </div>
             </div>
-            <div class="mb-3 d-lg-flex">
+            <div class="mb-3 d-sm-flex">
                 <label for="sex" class="form-label label-left text-nowrap pt-2 me-4">Sexe *</label>
                 <div class="" id="sex">
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="sex" id="sex-m"
-                               th:field="*{sex}" value="M" required>
+                               th:field="*{sex}" value="M">
                         <label class="form-check-label" for="sex-m">Male</label>
                     </div>
                     <div class="form-check form-check-inline">
                         <input class="form-check-input" type="radio" name="sex" id="sex-f"
-                               th:field="*{sex}" value="F" required>
+                               th:field="*{sex}" value="F">
                         <label class="form-check-label" for="sex-f">Female</label>
                     </div>
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('sex')}" th:errors="*{sex}"></div>
                 </div>
             </div>
-            <div class="mb-3 d-lg-flex">
+            <div class="mb-3 d-sm-flex">
                 <label for="address" class="form-label label-left text-nowrap pt-2 me-4">Adresse *</label>
                 <div class="">
                     <input type="text" class="form-control" id="address"
-                           th:field="*{address}" required>
+                           th:field="*{address}">
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
                 </div>
             </div>
-            <div class="mb-3 d-lg-flex">
+            <div class="mb-3 d-sm-flex">
                 <label for="phone" class="form-label label-left text-nowrap pt-2 me-4">Téléphone *</label>
                 <div class="">
-                    <input type="text" class="form-control" id="phone"
-                           pattern="\d\d\d-?\d\d\d-?\d\d\d\d" placeholder="000-000-0000"
-                           th:field="*{phone}" required>
+                    <input type="text" class="form-control" id="phone" placeholder="000-000-0000"
+                           th:field="*{phone}">
                     <div class="text-danger"
                          th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></div>
                 </div>
@@ -83,6 +82,8 @@
         </form>
     </section>
 </div>
+
+<footer th:insert="fragments :: footer"></footer>
 
 </body>
 </html>

@@ -15,31 +15,29 @@ import javax.validation.constraints.Size;
 @Setter
 public class Patient {
 
-    @Positive(message = "Must be greater than zero")
+    @Positive(message = "Plus grand que zéro")
     public Long id;
 
-    @NotBlank(message = "Required")
-    @Size(max = 20, message = "Maximum size {max} characters")
+    @NotBlank(message = "Requis")
+    @Size(max = 20, message = "Taille maximale de {max} caractères")
     public String family;
 
-    @NotBlank(message = "Required")
-    @Size(max = 20, message = "Maximum size {max} characters")
+    @NotBlank(message = "Requis")
+    @Size(max = 20, message = "Taille maximale de {max} caractères")
     public String given;
 
-    @NotBlank(message = "Required")
-    @Pattern(regexp = "\\d\\d\\d\\d[-/]\\d\\d[-/]\\d\\d", message = "Date format is YYYY-MM-DD")
+    @NotBlank(message = "Requis")
     public String dob;
 
-    @NotBlank(message = "Required")
-    @Pattern(regexp = "[MF]", message = "M or F")
+    @NotBlank(message = "Requis")
     public String sex;
 
-    @NotBlank(message = "Required")
-    @Size(max = 80, message = "Maximum size {max} characters")
+    @NotBlank(message = "Requis")
+    @Size(max = 40, message = "Taille maximale de {max} caractères")
     public String address;
 
-    @NotBlank(message = "Required")
-    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d", message = "Phone must have 10 digits (123-456-7890)")
+    @NotBlank(message = "Requis")
+    @Pattern(regexp = "(\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d)?", message = "Doit comporter 10 chiffres (123-456-7890)")
     public String phone;
 
 }
