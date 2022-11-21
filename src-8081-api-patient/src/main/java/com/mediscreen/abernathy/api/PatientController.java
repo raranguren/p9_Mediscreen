@@ -2,8 +2,6 @@ package com.mediscreen.abernathy.api;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,16 +25,20 @@ public class PatientController {
 
     @PostMapping("add")
     @ResponseStatus(HttpStatus.CREATED)
-    public PatientDTO create(@Valid @RequestBody PatientDTO patientDTO) {
+    public PatientDTO create(PatientDTO patientDTO) {
+        System.out.println(patientDTO.family);
         return service.add(patientDTO);
     }
 
+    /*
     // Allows adding values from CURL/Postman without validation
     @PostMapping(value = "add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public PatientDTO AddUrlEncoded(@RequestBody MultiValueMap<String, String> map) {
         return create(new PatientDTO(map));
     }
+    */
+
 
     @PostMapping("update")
     @ResponseStatus(HttpStatus.OK)
