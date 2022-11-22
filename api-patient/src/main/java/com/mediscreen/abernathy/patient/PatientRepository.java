@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.api;
+package com.mediscreen.abernathy.patient;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

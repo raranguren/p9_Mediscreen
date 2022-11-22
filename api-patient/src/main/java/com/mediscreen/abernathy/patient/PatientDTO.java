@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.api;
+package com.mediscreen.abernathy.patient;
 
 import lombok.Getter;
 import lombok.Setter;
