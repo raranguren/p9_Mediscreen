@@ -30,16 +30,6 @@ public class PatientController {
         return service.add(patientDTO);
     }
 
-    /*
-    // Allows adding values from CURL/Postman without validation
-    @PostMapping(value = "add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    public PatientDTO AddUrlEncoded(@RequestBody MultiValueMap<String, String> map) {
-        return create(new PatientDTO(map));
-    }
-    */
-
-
     @PostMapping("update")
     @ResponseStatus(HttpStatus.OK)
     public PatientDTO update(@Valid @RequestBody PatientDTO patientDTO) {

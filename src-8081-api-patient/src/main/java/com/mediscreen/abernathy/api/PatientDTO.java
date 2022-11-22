@@ -1,6 +1,7 @@
 package com.mediscreen.abernathy.api;
 
-import org.springframework.util.MultiValueMap;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.validation.annotation.Validated;
 
 import javax.validation.constraints.*;
@@ -8,6 +9,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 @Validated
+@Getter
+@Setter
 public class PatientDTO {
 
     @Positive
@@ -37,18 +40,6 @@ public class PatientDTO {
     @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
     public String phone;
 
-    public PatientDTO() {}
-    public PatientDTO(MultiValueMap<String, String> map) {
-        if (map == null) return;
-        var id = map.getFirst("id");
-        this.id = id == null ? null : Long.parseLong(id);
-        this.family = map.getFirst("family");
-        this.given = map.getFirst("given");
-        this.dob = map.getFirst("dob");
-        this.sex = map.getFirst("sex");
-        this.address = map.getFirst("address");
-        this.phone = map.getFirst("phone");
-    }
     public PatientDTO(Patient entity) {
         if (entity == null) return;
         this.id = entity.id;
