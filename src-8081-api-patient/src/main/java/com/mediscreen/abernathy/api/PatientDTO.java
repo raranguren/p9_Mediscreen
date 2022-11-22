@@ -40,6 +40,7 @@ public class PatientDTO {
     @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
     public String phone;
 
+    public PatientDTO() {}
     public PatientDTO(Patient entity) {
         if (entity == null) return;
         this.id = entity.id;
