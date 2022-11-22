@@ -3,7 +3,6 @@ package com.mediscreen.abernathy.api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -27,27 +26,31 @@ public class PatientController {
 
     @PostMapping("add")
     @ResponseStatus(HttpStatus.CREATED)
-    public PatientDTO create(@Valid @RequestBody PatientDTO patientDTO) {
-        return service.add(patientDTO);
-    }
-
-    // Allows adding values from CURL/Postman without validation
-    @PostMapping(value = "add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    @ResponseStatus(HttpStatus.CREATED)
-    public PatientDTO AddUrlEncoded(@RequestBody MultiValueMap<String, String> map) {
-        return create(new PatientDTO(map));
+    public PatientDTO add(@Valid @RequestBody PatientDTO patientDTO) {
+        return service.create(patientDTO);
     }
 
     @PostMapping("update")
-    @ResponseStatus(HttpStatus.OK)
     public PatientDTO update(@Valid @RequestBody PatientDTO patientDTO) {
         return service.update(patientDTO);
     }
 
     @GetMapping("delete/{id}")
-    @ResponseStatus(HttpStatus.OK)
     public PatientDTO delete(@PathVariable Long id) {
         return service.delete(id);
+    }
+
+    // Handlers for MediaType x-www-form-urlencoded
+
+    @PostMapping(value = "add", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public PatientDTO AddUrlEncoded(@Valid PatientDTO patientDTO) {
+        return add(patientDTO);
+    }
+
+    @PostMapping(value = "update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public PatientDTO updateUrlEncoded(@Valid PatientDTO patientDTO) {
+        return update(patientDTO);
     }
 
 }

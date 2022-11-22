@@ -15,7 +15,7 @@ public class PatientService {
         this.repository = repository;
     }
 
-    public PatientDTO add(PatientDTO dto) {
+    public PatientDTO create(PatientDTO dto) {
         var patient = dto.toEntity();
         patient.id = null;
         patient = repository.save(patient);
@@ -28,9 +28,9 @@ public class PatientService {
                 .collect(Collectors.toList());
     }
 
-    public PatientDTO update(PatientDTO patientDTO) {
-        if (!repository.existsById(patientDTO.id)) return null;
-        Patient patient = patientDTO.toEntity();
+    public PatientDTO update(PatientDTO dto) {
+        if (dto.id == null || !repository.existsById(dto.id)) return null;
+        Patient patient = dto.toEntity();
         patient = repository.save(patient);
         return new PatientDTO(patient);
     }

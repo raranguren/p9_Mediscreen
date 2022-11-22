@@ -30,7 +30,7 @@ public class PatientServiceTest {
 
     @Test
     void when_add_then_success() {
-        service.add(new PatientDTO());
+        service.create(new PatientDTO());
         verify(repository).save(any());
     }
 
@@ -38,7 +38,7 @@ public class PatientServiceTest {
     void when_add_with_id_then_ignore_id() {
         var dto = new PatientDTO();
         dto.id = 1L;
-        service.add(dto);
+        service.create(dto);
         verify(repository).save(captor.capture());
         var patient = captor.getValue();
         assertNull(patient.id);
