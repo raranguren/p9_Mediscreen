@@ -6,8 +6,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      target: web
-    container_name: web
+      target: app-web
+    container_name: app-web
     ports:
       - "8080:8080"
     expose:
