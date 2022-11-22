@@ -20,6 +20,7 @@
     <modules>
         <module>app-web</module>
         <module>api-patient</module>
+        <module>api-notes</module>
     </modules>
 
     <dependencies>

@@ -13,7 +13,7 @@ services:
     expose:
       - 8080
 
-  8081_api:
+  8081_patient:
     depends_on:
       - db
     build:
@@ -25,6 +25,19 @@ services:
       - "8081:8081"
     expose:
       - 8081
+
+  8082_notes:
+    depends_on:
+      - mongo
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api-notes
+    container_name: api-notes
+    ports:
+      - "8082:8082"
+    expose:
+      - 8082
 
   db:
     build:
@@ -45,3 +58,12 @@ services:
     container_name: adminer
     ports:
       - "127.0.0.1:8084:8080" #exposed only in localhost
+
+  mongo:
+    image: mongo
+    container_name: app-web
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
