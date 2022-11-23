@@ -27,10 +27,18 @@ public class PatientHistoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public String add(@RequestBody NoteDTO note) {
         if (note.id != null) throw new ValidationException("id != null");
-        if (note.patId == null) throw new ValidationException("patId = null");
-        if (note.e == null) throw new ValidationException("e = null");
+        if (note.patId == null) throw new ValidationException("patId == null");
+        if (note.e == null) throw new ValidationException("e == null");
         service.create(note);
         return "Created";
+    }
+
+    @PostMapping("/update")
+    public String update(@RequestBody NoteDTO note) throws IdNotFoundException {
+        if (note.id == null) throw new ValidationException("id == null");
+        if (note.e == null) throw new ValidationException("e == null");
+        service.update(note); //throws IdNotFoundException
+        return "OK";
     }
 
     // Handlers for MediaType x-www-form-urlencoded
@@ -41,12 +49,25 @@ public class PatientHistoryController {
         return this.add(new NoteDTO(null, patId, e));
     }
 
+    @PostMapping(path="/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String updateUrlEncoded(String id, String e) throws IdNotFoundException {
+        return this.update(new NoteDTO(id, null, e));
+    }
+
     // Return 400 when not valid
 
     @ExceptionHandler(ValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public String handleValidationException() {
         return "Bad request";
+    }
+
+    // Return 404 when not found
+
+    @ExceptionHandler(IdNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleIdNotFoundException() {
+        return "Not found";
     }
 
 }
