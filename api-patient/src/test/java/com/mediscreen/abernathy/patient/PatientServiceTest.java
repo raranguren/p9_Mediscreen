@@ -1,9 +1,5 @@
-package com.mediscreen.abernathy.api;
+package com.mediscreen.abernathy.patient;
 
-import com.mediscreen.abernathy.patient.Patient;
-import com.mediscreen.abernathy.patient.PatientDTO;
-import com.mediscreen.abernathy.patient.PatientRepository;
-import com.mediscreen.abernathy.patient.PatientService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;

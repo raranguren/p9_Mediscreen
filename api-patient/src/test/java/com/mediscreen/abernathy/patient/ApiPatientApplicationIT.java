@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.api;
+package com.mediscreen.abernathy.patient;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
