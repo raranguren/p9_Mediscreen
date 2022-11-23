@@ -1,5 +1,12 @@
 version: '3.4'
 
+volumes:
+  mediscreen-mongodb:
+
+networks:
+  front:
+  back:
+
 services:
 
   8080_web:
@@ -12,6 +19,9 @@ services:
       - "8080:8080"
     expose:
       - 8080
+    networks:
+      - front
+      - back
 
   8081_patient:
     depends_on:
@@ -23,8 +33,8 @@ services:
     container_name: api-patient
     ports:
       - "8081:8081"
-    expose:
-      - 8081
+    networks:
+      - back
 
   8082_notes:
     depends_on:
@@ -36,8 +46,8 @@ services:
     container_name: api-notes
     ports:
       - "8082:8082"
-    expose:
-      - 8082
+    networks:
+      - back
 
   db:
     build:
@@ -45,25 +55,52 @@ services:
       dockerfile: Dockerfile
       target: mysql-with-tables
     container_name: mysql
+    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mediscreen
     ports:
       - "127.0.0.1:3308:3306" #exposed only in localhost
+    networks:
+      - back
 
-  8084-adminer:
+  8084-admin-db:
     depends_on:
       - db
     image: adminer
     container_name: adminer
+    restart: always
     ports:
       - "127.0.0.1:8084:8080" #exposed only in localhost
+    networks:
+      - back
 
   mongo:
     image: mongo
-    container_name: app-web
+    restart: always
+    volumes:
+      - mediscreen-mongodb:/var/lib/mediscreen-mongodb
+    container_name: mongodb
     ports:
-      - 27017:27017
+      - "27017:27017"
+    networks:
+      - back
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: patienthistory
+
+  8085-admin-mongo:
+    image: mongo-express
+    depends_on:
+      - mongo
+    container_name: mongo-express
+    restart: always
+    ports:
+      - "127.0.0.1:8085:8081"
+    networks:
+      - back
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword
+      ME_CONFIG_MONGODB_SERVER: mongo
