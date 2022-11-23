@@ -27,4 +27,12 @@ public class NoteService {
         dto.id = null;
         repository.save(dto.toEntity());
     }
+
+    public void update(NoteDTO dto) throws IdNotFoundException {
+        var newNote = dto.toEntity();
+        var oldNote = repository.findById(newNote.id)
+                .orElseThrow(IdNotFoundException::new);
+        newNote.patId = oldNote.patId;
+        repository.save(newNote);
+    }
 }

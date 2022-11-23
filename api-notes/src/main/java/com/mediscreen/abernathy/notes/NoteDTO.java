@@ -20,7 +20,8 @@ public class NoteDTO {
     }
 
     public Note toEntity() {
-        return new Note(id, patId, e.replace("\\n", "\n"));
+        String fixedText = e==null ? null : e.replace("\\n", "\n");
+        return new Note(id, patId, fixedText);
     }
 
 }
