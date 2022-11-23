@@ -24,12 +24,13 @@ public class PatientHistoryController {
     }
 
     @PostMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public String add(@RequestBody NoteDTO note) {
         if (note.id != null) throw new ValidationException("id != null");
         if (note.patId == null) throw new ValidationException("patId = null");
         if (note.e == null) throw new ValidationException("e = null");
         service.create(note);
-        return "OK";
+        return "Created";
     }
 
     // Handlers for MediaType x-www-form-urlencoded
@@ -37,14 +38,15 @@ public class PatientHistoryController {
     @PostMapping(path="/add", consumes= MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public String addUrlEncoded(Long patId, String e) {
-        this.add(new NoteDTO(null, patId, e));
-        return "OK";
+        return this.add(new NoteDTO(null, patId, e));
     }
 
     // Return 400 when not valid
 
     @ExceptionHandler(ValidationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public void handleValidationException() {}
+    public String handleValidationException() {
+        return "Bad request";
+    }
 
 }

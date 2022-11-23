@@ -16,8 +16,10 @@ public class NoteService {
     }
 
     public List<NoteDTO> findAllByPatientId(Long id) {
-        return repository.findAllByPatId(id)
-                .stream().map(NoteDTO::new)
+        return repository
+                .findAllByPatId(id)
+                .stream()
+                .map(NoteDTO::new)
                 .collect(Collectors.toList());
     }
 

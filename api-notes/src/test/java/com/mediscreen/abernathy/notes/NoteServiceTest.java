@@ -9,6 +9,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -28,6 +29,12 @@ public class NoteServiceTest {
         var result = service.findAllByPatientId(1L);
         assertNotNull(result);
         verify(repository).findAllByPatId(anyLong());
+    }
+
+    @Test
+    void when_add_then_success() {
+        service.create(new NoteDTO());
+        verify(repository).save(any(Note.class));
     }
 
 }

@@ -20,6 +20,6 @@ public class Note {
     @Indexed
     public Long patId;
 
-    public String note;
+    public String text;
 
 }

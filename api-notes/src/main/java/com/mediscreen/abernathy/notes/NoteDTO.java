@@ -16,11 +16,11 @@ public class NoteDTO {
     public String e;
 
     public NoteDTO(Note fromEntity) {
-        this(fromEntity.id, fromEntity.patId, fromEntity.note);
+        this(fromEntity.id, fromEntity.patId, fromEntity.text);
     }
 
     public Note toEntity() {
-        return new Note(id, patId, e);
+        return new Note(id, patId, e.replace("\\n", "\n"));
     }
 
 }
