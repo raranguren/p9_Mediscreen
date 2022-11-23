@@ -21,4 +21,8 @@ public class NoteService {
                 .collect(Collectors.toList());
     }
 
+    public void create(NoteDTO dto) {
+        dto.id = null;
+        repository.save(dto.toEntity());
+    }
 }

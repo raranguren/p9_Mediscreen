@@ -4,12 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
-@Validated
 @Getter
 @Setter
 @NoArgsConstructor
@@ -17,20 +12,15 @@ import javax.validation.constraints.NotNull;
 public class NoteDTO {
 
     public String id;
-
-    @NotNull
     public Long patId;
+    public String e;
 
-    @NotEmpty
-    public String note;
-
-
-    public NoteDTO(Note document) {
-        this(document.id, document.patId, document.note);
+    public NoteDTO(Note fromEntity) {
+        this(fromEntity.id, fromEntity.patId, fromEntity.note);
     }
 
-    public Note toDocument() {
-        return new Note(id, patId, note);
+    public Note toEntity() {
+        return new Note(id, patId, e);
     }
 
 }
