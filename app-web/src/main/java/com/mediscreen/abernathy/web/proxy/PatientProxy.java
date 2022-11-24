@@ -28,7 +28,8 @@ public class PatientProxy {
 
     public Optional<Patient> add(Patient patient) {
         return client.post().uri("/patient/add").bodyValue(patient)
-                .retrieve().bodyToMono(Patient.class).blockOptional();
+                .retrieve().bodyToMono(Patient.class)
+                .onErrorComplete().blockOptional();
     }
 
     public List<Patient> readAll() {
@@ -40,16 +41,19 @@ public class PatientProxy {
 
     public Patient update(Patient patient) {
         return client.post().uri("/patient/update").bodyValue(patient)
-                .retrieve().bodyToMono(Patient.class).block();
+                .retrieve().bodyToMono(Patient.class)
+                .onErrorComplete().block();
     }
 
     public Optional<Patient> read(Long id) {
         return client.get().uri("patient/read/" + id)
-                .retrieve().bodyToMono(Patient.class).blockOptional();
+                .retrieve().bodyToMono(Patient.class)
+                .onErrorComplete().blockOptional();
     }
 
     public Patient delete(Long id) {
         return client.get().uri("/patient/delete/" + id)
-                .retrieve().bodyToMono(Patient.class).block();
+                .retrieve().bodyToMono(Patient.class)
+                .onErrorComplete().block();
     }
 }

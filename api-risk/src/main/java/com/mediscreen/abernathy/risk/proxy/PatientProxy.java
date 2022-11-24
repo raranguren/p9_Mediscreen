@@ -1,7 +1,7 @@
 package com.mediscreen.abernathy.risk.proxy;
 
 
-import com.mediscreen.abernathy.risk.domain.Patient;
+import com.mediscreen.abernathy.risk.dto.PatientDTO;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -27,15 +27,17 @@ public class PatientProxy {
                 .build();
     }
 
-    public Optional<Patient> findById(Long patId) {
+    public Optional<PatientDTO> findById(Long patId) {
         return client.get().uri("patient/read/" + patId)
-                .retrieve().bodyToMono(Patient.class).blockOptional();
+                .retrieve().bodyToMono(PatientDTO.class)
+                .onErrorComplete().blockOptional();
     }
 
-    public Optional<Patient> findByFamilyName(String familyName) {
+    public Optional<PatientDTO> findByFamilyName(String familyName) {
         // reading all the patients because a search by surname is not implemented in the API
         var firstMatch = client.get().uri("patient/list")
-                .retrieve().bodyToFlux(Patient.class)
+                .retrieve().bodyToFlux(PatientDTO.class)
+                .onErrorComplete()
                 .filter(patient -> familyName.equals(patient.family))
                 .blockFirst();
         return Optional.ofNullable(firstMatch);
