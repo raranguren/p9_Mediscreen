@@ -42,7 +42,9 @@ public class HistoryController {
 
     @GetMapping("/history/update/{noteId}")
     public String updateForm(@PathVariable String noteId, Model model) {
-        model.addAttribute("note", notesService.readByNoteId(noteId));
+        var note = notesService.readByNoteId(noteId);
+        if (note.isEmpty()) return "redirect:/history";
+        model.addAttribute("note", note);
         return "history/update";
     }
 

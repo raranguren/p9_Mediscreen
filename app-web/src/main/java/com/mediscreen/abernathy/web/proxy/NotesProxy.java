@@ -7,6 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
@@ -54,9 +55,9 @@ public class NotesProxy {
                 .onErrorComplete().block();
     }
 
-    public Note readByNoteId(String noteId) {
+    public Optional<Note> readByNoteId(String noteId) {
         return client.get().uri("patHistory/read/" + noteId)
                 .retrieve().bodyToMono(Note.class)
-                .onErrorComplete().block();
+                .onErrorComplete().blockOptional();
     }
 }

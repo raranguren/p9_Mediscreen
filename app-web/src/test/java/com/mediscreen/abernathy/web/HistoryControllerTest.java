@@ -1,6 +1,7 @@
 package com.mediscreen.abernathy.web;
 
 import com.mediscreen.abernathy.web.controller.HistoryController;
+import com.mediscreen.abernathy.web.dto.Note;
 import com.mediscreen.abernathy.web.service.NotesService;
 import com.mediscreen.abernathy.web.service.PatientService;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.Optional;
+
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -31,7 +35,8 @@ public class HistoryControllerTest {
 
     @Test
     public void update_form_compiles() throws Exception {
-        mvc.perform(get("/history/update"))
+        when(notesService.readByNoteId("aaaa")).thenReturn(Optional.of(new Note()));
+        mvc.perform(get("/history/update/aaaa"))
                 .andExpect(status().is2xxSuccessful());
     }
 

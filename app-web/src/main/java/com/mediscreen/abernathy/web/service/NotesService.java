@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class NotesService {
@@ -32,7 +33,7 @@ public class NotesService {
         api.update(note);
     }
 
-    public Note readByNoteId(String noteId) {
+    public Optional<Note> readByNoteId(String noteId) {
         return api.readByNoteId(noteId);
     }
 }
