@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -22,6 +23,11 @@ public class PatientController {
     @GetMapping("list")
     public List<PatientDTO> list() {
         return service.readAll();
+    }
+
+    @GetMapping("read/{id}")
+    public Optional<PatientDTO> read(@PathVariable Long id) {
+        return service.read(id);
     }
 
     @PostMapping("add")

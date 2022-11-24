@@ -18,8 +18,6 @@ public class PatientProxy {
     private String API_URL;
     private WebClient client;
 
-    private final Map<Long, Patient> cache = new HashMap<>();
-
     @PostConstruct
     public void buildWebClient() {
         this.client = WebClient.builder()
@@ -37,9 +35,6 @@ public class PatientProxy {
         Patient[] array = client.get().uri("patient/list")
                 .retrieve().bodyToMono(Patient[].class).block();
         if (array == null) return List.of();
-        for (var patient : array) {
-            cache.put(patient.id, patient);
-        }
         return List.of(array);
     }
 
@@ -49,8 +44,8 @@ public class PatientProxy {
     }
 
     public Optional<Patient> read(Long id) {
-        if (cache.containsKey(id)) readAll();
-        return Optional.ofNullable(cache.get(id));
+        return client.get().uri("patient/read/" + id)
+                .retrieve().bodyToMono(Patient.class).blockOptional();
     }
 
     public Patient delete(Long id) {
