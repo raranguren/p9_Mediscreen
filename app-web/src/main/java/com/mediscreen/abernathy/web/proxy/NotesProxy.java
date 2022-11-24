@@ -28,12 +28,10 @@ public class NotesProxy {
     }
 
     public List<Note> readByPatientId(Long patId) {
-        if (patId == null) return List.of();
-        Note[] array = client.get().uri("patHistory/patient/" + patId)
-                .retrieve().bodyToMono(Note[].class)
-                .onErrorComplete().block();
-        if (array == null) return List.of();
-        return List.of(array);
+        return client.get().uri("patHistory/patient/" + patId)
+                .retrieve().bodyToFlux(Note.class)
+                .onErrorComplete()
+                .collectList().block();
     }
 
     public void add(Note note) {

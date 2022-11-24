@@ -27,9 +27,17 @@ public class PatientProxy {
                 .build();
     }
 
-    public Optional<Patient> read(Long patId) {
+    public Optional<Patient> findById(Long patId) {
         return client.get().uri("patient/read/" + patId)
                 .retrieve().bodyToMono(Patient.class).blockOptional();
     }
 
+    public Optional<Patient> findByFamilyName(String familyName) {
+        // reading all the patients because a search by surname is not implemented in the API
+        var firstMatch = client.get().uri("patient/list")
+                .retrieve().bodyToFlux(Patient.class)
+                .filter(patient -> familyName.equals(patient.family))
+                .blockFirst();
+        return Optional.ofNullable(firstMatch);
+    }
 }

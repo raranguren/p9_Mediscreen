@@ -32,10 +32,10 @@ public class PatientProxy {
     }
 
     public List<Patient> readAll() {
-        Patient[] array = client.get().uri("patient/list")
-                .retrieve().bodyToMono(Patient[].class).block();
-        if (array == null) return List.of();
-        return List.of(array);
+        return client.get().uri("patient/list")
+                .retrieve().bodyToFlux(Patient.class)
+                .onErrorComplete()
+                .collectList().block();
     }
 
     public Patient update(Patient patient) {
