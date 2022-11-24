@@ -33,4 +33,10 @@ public class NotesProxy {
         if (array == null) return List.of();
         return List.of(array);
     }
+
+    public void add(Note note) {
+        if (note == null) return;
+        client.post().uri("patHistory/add").bodyValue(note)
+                .retrieve().bodyToMono(String.class).block();
+    }
 }

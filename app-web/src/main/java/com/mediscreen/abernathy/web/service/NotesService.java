@@ -19,4 +19,8 @@ public class NotesService {
     public List<Note> readByPatientId(Long patId) {
         return api.readByPatientId(patId);
     }
+
+    public void add(Note note) {
+        api.add(note);
+    }
 }

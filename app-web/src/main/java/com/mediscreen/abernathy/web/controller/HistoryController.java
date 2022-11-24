@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class HistoryController {
@@ -25,11 +26,17 @@ public class HistoryController {
     }
 
     @GetMapping("/history/list")
-    public String baseDir(Long patId, Model model, Note newNote) {
+    public String list(Long patId, Model model) {
         model.addAttribute("patients", patientService.readAll());
         model.addAttribute("selectedId", patId);
         model.addAttribute("notes", notesService.readByPatientId(patId));
         return "history/list";
+    }
+
+    @PostMapping("/history/add")
+    public String add(Note note) {
+        notesService.add(note);
+        return "redirect:/history/list?patId=" + note.patId;
     }
 
 }
