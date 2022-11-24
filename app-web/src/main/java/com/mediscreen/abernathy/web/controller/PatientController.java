@@ -1,5 +1,6 @@
-package com.mediscreen.abernathy.web;
+package com.mediscreen.abernathy.web.controller;
 
+import com.mediscreen.abernathy.web.service.PatientService;
 import com.mediscreen.abernathy.web.dto.Patient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

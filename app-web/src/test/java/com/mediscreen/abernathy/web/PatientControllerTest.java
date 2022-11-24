@@ -1,5 +1,7 @@
 package com.mediscreen.abernathy.web;
 
+import com.mediscreen.abernathy.web.controller.PatientController;
+import com.mediscreen.abernathy.web.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;

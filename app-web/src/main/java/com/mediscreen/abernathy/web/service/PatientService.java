@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.web;
+package com.mediscreen.abernathy.web.service;
 
 import com.mediscreen.abernathy.web.dto.Patient;
 import com.mediscreen.abernathy.web.proxy.ApiProxy;
