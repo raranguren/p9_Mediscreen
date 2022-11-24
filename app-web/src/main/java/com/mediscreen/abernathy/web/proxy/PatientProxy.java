@@ -1,21 +1,31 @@
 package com.mediscreen.abernathy.web.proxy;
 
 import com.mediscreen.abernathy.web.dto.Patient;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
+import javax.annotation.PostConstruct;
 import java.util.*;
 
+import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
+import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
+
 @Service
-public class ApiProxy {
+public class PatientProxy {
+
+    @Value("${api-patient-url}")
+    private String API_URL;
+    private WebClient client;
 
     private final Map<Long, Patient> cache = new HashMap<>();
 
-    private final WebClient client;
-    @Autowired
-    public ApiProxy(WebClient client) {
-        this.client = client;
+    @PostConstruct
+    public void buildWebClient() {
+        this.client = WebClient.builder()
+                .baseUrl(API_URL)
+                .defaultHeader(CONTENT_TYPE, APPLICATION_JSON_VALUE)
+                .build();
     }
 
     public Optional<Patient> add(Patient patient) {

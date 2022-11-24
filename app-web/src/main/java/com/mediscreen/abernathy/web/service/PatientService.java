@@ -1,7 +1,7 @@
 package com.mediscreen.abernathy.web.service;
 
 import com.mediscreen.abernathy.web.dto.Patient;
-import com.mediscreen.abernathy.web.proxy.ApiProxy;
+import com.mediscreen.abernathy.web.proxy.PatientProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +11,9 @@ import java.util.Optional;
 @Service
 public class PatientService {
 
-    private final ApiProxy api;
+    private final PatientProxy api;
     @Autowired
-    public PatientService(ApiProxy api) {
+    public PatientService(PatientProxy api) {
         this.api = api;
     }
 

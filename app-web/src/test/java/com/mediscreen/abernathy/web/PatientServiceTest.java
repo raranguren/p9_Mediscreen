@@ -1,7 +1,7 @@
 package com.mediscreen.abernathy.web;
 
 import com.mediscreen.abernathy.web.dto.Patient;
-import com.mediscreen.abernathy.web.proxy.ApiProxy;
+import com.mediscreen.abernathy.web.proxy.PatientProxy;
 import com.mediscreen.abernathy.web.service.PatientService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +24,7 @@ public class PatientServiceTest {
     PatientService service;
 
     @Mock
-    ApiProxy api;
+    PatientProxy api;
 
     @Test
     void when_list_then_success() {
