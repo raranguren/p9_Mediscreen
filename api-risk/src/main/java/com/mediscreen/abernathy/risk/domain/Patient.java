@@ -1,12 +1,13 @@
 package com.mediscreen.abernathy.risk.domain;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Patient {
 
+    public Long id;
     public String family;
     public String given;
     public String dob;
-    public ArrayList<String> notes;
+    public List<String> notes;
 
 }
