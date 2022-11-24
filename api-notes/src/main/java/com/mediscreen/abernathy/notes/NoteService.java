@@ -35,4 +35,9 @@ public class NoteService {
         newNote.patId = oldNote.patId;
         repository.save(newNote);
     }
+
+    public void delete(String id) {
+        if (repository.existsById(id))
+            repository.deleteById(id);
+    }
 }

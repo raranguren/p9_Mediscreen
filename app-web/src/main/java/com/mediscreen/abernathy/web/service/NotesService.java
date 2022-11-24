@@ -23,4 +23,8 @@ public class NotesService {
     public void add(Note note) {
         api.add(note);
     }
+
+    public void delete(String noteId) {
+        api.delete(noteId);
+    }
 }

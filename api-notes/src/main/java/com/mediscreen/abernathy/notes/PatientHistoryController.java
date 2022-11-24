@@ -41,6 +41,12 @@ public class PatientHistoryController {
         return "OK";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable String id) {
+        service.delete(id);
+        return "OK";
+    }
+
     // Handlers for MediaType x-www-form-urlencoded
 
     @PostMapping(path="/add", consumes= MediaType.APPLICATION_FORM_URLENCODED_VALUE)

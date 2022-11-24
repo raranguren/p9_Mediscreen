@@ -39,4 +39,9 @@ public class NotesProxy {
         client.post().uri("patHistory/add").bodyValue(note)
                 .retrieve().bodyToMono(String.class).block();
     }
+
+    public void delete(String noteId) {
+        client.get().uri("patHistory/delete/" + noteId)
+                .retrieve().bodyToMono(String.class).block();
+    }
 }

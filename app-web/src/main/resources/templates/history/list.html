@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments :: html_head(~{ :: title})">
-    <title>Patients</title>
+    <title>Historique de notes</title>
 </head>
 <body>
 
@@ -39,10 +39,11 @@
                            th:utext="${#strings.replace(#strings.escapeXml(note.e),'&#10;','<br>')}"></p>
                     </td>
                     <td class="text-nowrap">
-                        <a th:href="@{update/{id}?patId={patId}(id=${note.id})(patId=${note.patId})}"
+                        <a th:href="@{update/{id}(id=${note.id})}"
                            class="btn-link text-decoration-none text-primary">Modifier</a>
                         |
-                        <a th:href="@{delete/{id}(id=${note.id})}" class="btn-link text-decoration-none text-primary">Supprimer</a>
+                        <a th:href="@{delete/?noteId={id}&patId={patId}(id=${note.id}, patId=${selectedId})}"
+                           class="btn-link text-decoration-none text-primary">Supprimer</a>
                     </td>
                 </tr>
                 <tr class="align-middle">

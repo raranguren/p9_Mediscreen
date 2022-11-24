@@ -39,4 +39,12 @@ public class HistoryController {
         return "redirect:/history/list?patId=" + note.patId;
     }
 
+    @GetMapping("/history/delete")
+    public String delete(String noteId, Long patId) {
+        notesService.delete(noteId);
+        return "redirect:/history/list?patId=" + patId;
+    }
+
+
+
 }

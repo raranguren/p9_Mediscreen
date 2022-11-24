@@ -62,4 +62,11 @@ public class NoteServiceTest {
         assertThrows(IdNotFoundException.class, action);
     }
 
+    @Test
+    void when_delete_then_success() {
+        when(repository.existsById("abcd")).thenReturn(true);
+        service.delete("abcd");
+        verify(repository).deleteById("abcd");
+    }
+
 }
