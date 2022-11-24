@@ -47,6 +47,11 @@ public class PatientHistoryController {
         return "OK";
     }
 
+    @GetMapping("/read/{id}")
+    public NoteDTO read(@PathVariable String id) throws IdNotFoundException {
+        return service.findByNoteId(id);
+    }
+
     // Handlers for MediaType x-www-form-urlencoded
 
     @PostMapping(path="/add", consumes= MediaType.APPLICATION_FORM_URLENCODED_VALUE)

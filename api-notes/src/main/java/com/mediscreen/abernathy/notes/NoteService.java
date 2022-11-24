@@ -40,4 +40,10 @@ public class NoteService {
         if (repository.existsById(id))
             repository.deleteById(id);
     }
+
+    public NoteDTO findByNoteId(String id) throws IdNotFoundException {
+        var note = repository.findById(id)
+                .orElseThrow(IdNotFoundException::new);
+        return new NoteDTO(note);
+    }
 }
