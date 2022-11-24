@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments :: html_head(~{ :: title})">
+    <title>Patients</title>
+</head>
+<body>
+
+<nav th:insert="fragments :: nav"></nav>
+
+<div th:insert="fragments :: card('Historique des notes', ~{ :: .card-content})">
+    <section class="card-content">
+        <form method="get">
+            <select class="form-select" aria-label="Sélection du patient"
+                    name="patId"
+                    onchange="this.form.submit()">
+                <option value="">Sélection du patient</option>
+                <option th:each="patient: ${patients}"
+                        th:value="${patient.id}"
+                        th:text="${patient.family+', '+patient.given}"
+                        th:selected="${patient.id == selectedId}"
+                ></option>
+            </select>
+        </form>
+    </section>
+</div>
+
+<footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>
