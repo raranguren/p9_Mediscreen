@@ -23,7 +23,7 @@ There are 2 Spring Boot profiles available:
   - api-patient uses mysql in a container named "db"
   - api-notes looks for MongoDB in a container named "mongo"
 
-The databases can be filled with test data using CURL commands (see examples in [data-setup/data.sh](data-setup/data.sh)).
+The databases can be filled CURL commands (see examples in folder data-setup).
 
 ## Deployment
 
@@ -33,8 +33,8 @@ The application can be deployed using
 
 Note that the images are built in Java 19 for increased performance.
 
-## Admin tools after deployment
+## Admin tools
 
 The project includes two containers listening only in localhost:
-- port 8084: Adminer for MySQL
-- port 8085: Mongo Express to
+- port 8084: Adminer - to manage the MySQL db
+- port 8085: Mongo-Express - to manage the MongoDb
