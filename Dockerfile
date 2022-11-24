@@ -15,6 +15,10 @@ FROM amazoncorretto:19 AS api-notes
 COPY --from=build /app/api-notes/target/*.jar api.jar
 ENTRYPOINT java -jar api.jar --spring.profiles.active=prod
 
+FROM amazoncorretto:19 AS api-risk
+COPY --from=build /app/api-risk/target/*.jar api.jar
+ENTRYPOINT java -jar api.jar --spring.profiles.active=prod
+
 FROM mysql AS mysql-with-tables
 ENV MYSQL_DATABASE=mediscreen \
     MYSQL_ROOT_PASSWORD=rootpassword

@@ -49,6 +49,17 @@ services:
     networks:
       - back
 
+  8083_risk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: api-risk
+    container_name: api-risk
+    ports:
+      - "8083:8083"
+    networks:
+      - back
+
   db:
     build:
       context: .
