@@ -21,6 +21,41 @@
                 ></option>
             </select>
         </form>
+
+        <form method="post" th:object="${newNote}">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Notes</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="note: ${notes}">
+                    <td>
+                        <!-- String split: https://stackoverflow.com/questions/49849839 -->
+                        <p th:utext="${#strings.replace(#strings.escapeXml(note.e),'&#10;','<br>')}"></p>
+                    </td>
+                    <td>
+                        <a th:href="@{update/{id}?patId={patId}(id=${note.id})(patId=${note.patId})}"
+                           class="btn-link text-decoration-none text-primary">Modifier</a>
+                        |
+                        <a th:href="@{delete/{id}(id=${note.id})}" class="btn-link text-decoration-none text-primary">Supprimer</a>
+                    </td>
+                </tr>
+                <tr class="align-middle">
+                    <td>
+                        <textarea class="form-control" name="e" rows="5"></textarea>
+                        <input type="hidden" name="patId" th:value="${selectedId}" />
+                    </td>
+                    <td>
+                        <a th:href="@{add}" class="btn btn-sm btn-primary">Ajouter</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
     </section>
 </div>
 
