@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -39,12 +40,24 @@ public class HistoryController {
         return "redirect:/history/list?patId=" + note.patId;
     }
 
+    @GetMapping("/history/update/{noteId}")
+    public String updateForm(@PathVariable String noteId, Model model) {
+        model.addAttribute("note", notesService.readByNoteId(noteId));
+        return "history/update";
+    }
+
+    @PostMapping("/history/update")
+    public String update(Note note) {
+        if (note.e == null || "".equals(note.e))
+            delete(note.id, note.patId);
+        notesService.update(note);
+        return "redirect:/history/list?patId=" + note.patId;
+    }
+
     @GetMapping("/history/delete")
     public String delete(String noteId, Long patId) {
         notesService.delete(noteId);
         return "redirect:/history/list?patId=" + patId;
     }
-
-
 
 }

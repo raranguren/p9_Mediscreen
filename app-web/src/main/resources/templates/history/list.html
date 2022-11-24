@@ -23,6 +23,7 @@
         </form>
 
         <form method="post"
+              th:if="${selectedId}"
               th:action="@{add}"
               th:object="${note}">
             <table class="table table-hover">

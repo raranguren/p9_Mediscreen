@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="fragments :: html_head(~{ :: title})">
+    <title>Mise à jour du note</title>
+</head>
+<body>
+
+<nav th:insert="fragments :: nav"></nav>
+
+<div th:insert="fragments :: card('Mise à jour du note', ~{ :: .card-content})">
+    <section class="card-content" style="min-width: 60em">
+        <form method="post" th:action="@{/history/update}" th:object="${note}">
+            <div>
+                <textarea th:field="*{e}" class="form-control" rows="15"></textarea>
+                <input type="hidden" th:field="*{id}" />
+                <input type="hidden" th:field="*{patId}" />
+            </div>
+            <div>
+                <input type="submit" class="btn btn-sm btn-primary" value="Enregistrer" />
+            </div>
+        </form>
+    </section>
+</div>
+
+<footer th:insert="fragments :: footer"></footer>
+
+</body>
+</html>

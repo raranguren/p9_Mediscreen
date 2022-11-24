@@ -29,7 +29,8 @@ public class NotesProxy {
     public List<Note> readByPatientId(Long patId) {
         if (patId == null) return List.of();
         Note[] array = client.get().uri("patHistory/patient/" + patId)
-                .retrieve().bodyToMono(Note[].class).block();
+                .retrieve().bodyToMono(Note[].class)
+                .onErrorComplete().block();
         if (array == null) return List.of();
         return List.of(array);
     }
@@ -37,11 +38,25 @@ public class NotesProxy {
     public void add(Note note) {
         if (note == null) return;
         client.post().uri("patHistory/add").bodyValue(note)
-                .retrieve().bodyToMono(String.class).block();
+                .retrieve().bodyToMono(String.class)
+                .onErrorComplete().block();
     }
 
     public void delete(String noteId) {
         client.get().uri("patHistory/delete/" + noteId)
-                .retrieve().bodyToMono(String.class).block();
+                .retrieve().bodyToMono(String.class)
+                .onErrorComplete().block();
+    }
+
+    public void update(Note note) {
+        client.post().uri("patHistory/update").bodyValue(note)
+                .retrieve().bodyToMono(String.class)
+                .onErrorComplete().block();
+    }
+
+    public Note readByNoteId(String noteId) {
+        return client.get().uri("patHistory/read/" + noteId)
+                .retrieve().bodyToMono(Note.class)
+                .onErrorComplete().block();
     }
 }

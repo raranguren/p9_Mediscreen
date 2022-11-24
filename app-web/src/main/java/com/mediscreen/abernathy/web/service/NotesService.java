@@ -27,4 +27,12 @@ public class NotesService {
     public void delete(String noteId) {
         api.delete(noteId);
     }
+
+    public void update(Note note) {
+        api.update(note);
+    }
+
+    public Note readByNoteId(String noteId) {
+        return api.readByNoteId(noteId);
+    }
 }
