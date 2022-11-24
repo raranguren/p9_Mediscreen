@@ -69,4 +69,11 @@ public class NoteServiceTest {
         verify(repository).deleteById("abcd");
     }
 
+    @Test
+    void when_read_by_id_then_success() throws Exception {
+        when(repository.findById("abab")).thenReturn(Optional.of(new Note("abab", 1L, "testtext")));
+        var result = service.findByNoteId("abab");
+        assertEquals("testtext", result.e);
+    }
+
 }

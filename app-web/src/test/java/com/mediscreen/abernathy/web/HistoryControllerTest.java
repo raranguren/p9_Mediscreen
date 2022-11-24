@@ -29,4 +29,10 @@ public class HistoryControllerTest {
                 .andExpect(status().is2xxSuccessful());
     }
 
+    @Test
+    public void update_form_compiles() throws Exception {
+        mvc.perform(get("/history/update"))
+                .andExpect(status().is2xxSuccessful());
+    }
+
 }
