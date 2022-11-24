@@ -32,12 +32,10 @@ public class PatientDTO {
     @Pattern(regexp = "[MF]")
     public String sex;
 
-    @NotBlank
     @Size(max = 40)
     public String address;
 
-    @NotBlank
-    @Pattern(regexp = "\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d")
+    @Pattern(regexp = "(\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d)?")
     public String phone;
 
     public PatientDTO() {}

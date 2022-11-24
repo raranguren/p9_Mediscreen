@@ -32,11 +32,9 @@ public class Patient {
     @NotBlank(message = "Requis")
     public String sex;
 
-    @NotBlank(message = "Requis")
     @Size(max = 40, message = "Taille maximale de {max} caractères")
     public String address;
 
-    @NotBlank(message = "Requis")
     @Pattern(regexp = "(\\d\\d\\d-?\\d\\d\\d-?\\d\\d\\d\\d)?", message = "Doit comporter 10 chiffres (123-456-7890)")
     public String phone;
 
