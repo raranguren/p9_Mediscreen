@@ -7,15 +7,15 @@ curl -d "family=TestEarlyOnset&given=Test&dob=2002-06-28&sex=F&address=4 Valley 
 
 # Populate notes for patient history
 
-curl -d "patId=1&e=Patient: TestNone Practitioner's notes/recommendations: Patient states that they are 'feeling terrific' Weight at or below recommended level" -X POST http://localhost:8082/patHistory/add
+curl -d "patId=1&e=Le patient déclare se sentir 'en pleine forme'. Poids égal ou inférieur au niveau recommandé." -X POST http://localhost:8082/patHistory/add
 
-curl -d "patId=2&e=Patient: TestBorderline Practitioner's notes/recommendations: Patient states that they are feeling a great deal of stress at work Patient also complains that their hearing seems Abnormal as of late" -X POST http://localhost:8082/patHistory/add
-curl -d "patId=2&e=Patient: TestBorderline Practitioner's notes/recommendations: Patient states that they have had a Reaction to medication within last 3 months Patient also complains that their hearing continues to be problematic" -X POST http://localhost:8082/patHistory/add
+curl -d "patId=2&e=Le patient déclare qu'il ressent beaucoup de stress au travail \nLe patient se plaint également que son audition semble anormale depuis quelque temps." -X POST http://localhost:8082/patHistory/add
+curl -d "patId=2&e=Le patient déclare avoir eu une réaction aux médicaments au cours des 3 derniers mois.\nLe patient se plaint également que son audition continue d'être problématique." -X POST http://localhost:8082/patHistory/add
 
-curl -d "patId=3&e=Patient: TestInDanger Practitioner's notes/recommendations: Patient states that they are short term Smoker " -X POST http://localhost:8082/patHistory/add
-curl -d "patId=3&e=Patient: TestInDanger Practitioner's notes/recommendations: Patient states that they quit within last year Patient also complains that of Abnormal breathing spells Lab reports Cholesterol LDL high" -X POST http://localhost:8082/patHistory/add
+curl -d "patId=3&e=Le patient déclare qu'il est un fumeur à court terme." -X POST http://localhost:8082/patHistory/add
+curl -d "patId=3&e=Le patient déclare avoir arrêté de fumer l'année dernière \nLe patient se plaint également de périodes de respiration anormales.\nRapports de laboratoire Cholestérol LDL élevé" -X POST http://localhost:8082/patHistory/add
 
-curl -d "patId=4&e=Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that walking up stairs has become difficult Patient also complains that they are having shortness of breath Lab results indicate Antibodies present elevated Reaction to medication" -X POST http://localhost:8082/patHistory/add
-curl -d "patId=4&e=Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that they are experiencing back pain when seated for a long time" -X POST http://localhost:8082/patHistory/add
-curl -d "patId=4&e=Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that they are a short term Smoker Hemoglobin A1C above recommended level" -X POST http://localhost:8082/patHistory/add
-curl -d "patId=4&e=Patient: TestEarlyOnset Practitioner's notes/recommendations: Patient states that Body Height, Body Weight, Cholesterol, Dizziness and Reaction" -X POST http://localhost:8082/patHistory/add
+curl -d "patId=4&e=Le patient déclare que monter les escaliers est devenu difficile.\nLe patient se plaint également d'être essoufflé.\nLes résultats de laboratoire indiquent la présence d'anticorps, une réaction élevée aux médicaments." -X POST http://localhost:8082/patHistory/add
+curl -d "patId=4&e=Le patient déclare avoir mal au dos lorsqu'il reste assis pendant une longue période." -X POST http://localhost:8082/patHistory/add
+curl -d "patId=4&e=Le patient déclare qu'il est un fumeur à court terme\nHémoglobine A1C supérieure au niveau recommandé" -X POST http://localhost:8082/patHistory/add
+curl -d "patId=4&e=Le patient déclare que sa taille, son poids, son taux de cholestérol, ses vertiges" -X POST http://localhost:8082/patHistory/add
