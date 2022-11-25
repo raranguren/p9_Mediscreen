@@ -43,13 +43,12 @@ public class PatientProfileService {
     }
 
     private PatientProfile generateProfileForPatient(PatientDTO patient) {
-        var profile = new PatientProfile();
-        profile.family = patient.family;
-        profile.given = patient.given;
-        profile.age = ageFromDateString(patient.dob);
-        profile.sex = "M".equals(patient.sex) ? Sex.MALE : Sex.FEMALE;
-        profile.diabetesTriggerCount = noteAnalysisService.getTriggerCount(patient.id, DIABETES_TRIGGERS);
-        return profile;
+        return new PatientProfile(
+                patient.given,
+                patient.family,
+                ageFromDateString(patient.dob),
+                "M".equals(patient.sex) ? Sex.MALE : Sex.FEMALE,
+                noteAnalysisService.getTriggerCount(patient.id, DIABETES_TRIGGERS));
     }
 
     private Integer ageFromDateString(String dob) {

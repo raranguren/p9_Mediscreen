@@ -1,22 +1,22 @@
 package com.mediscreen.abernathy.risk.domain;
 
 public enum RiskLevel {
-    RISK_NONE {
+    NONE {
         public String toString() {
             return "None";
         }
     },
-    RISK_BORDERLINE {
+    BORDERLINE {
         public String toString() {
             return "Borderline";
         }
     },
-    RISK_IN_DANGER {
+    IN_DANGER {
         public String toString() {
             return "In Danger";
         }
     },
-    RISK_EARLY_ONSET {
+    EARLY_ONSET {
         public String toString() {
             return "Early onset";
         }
