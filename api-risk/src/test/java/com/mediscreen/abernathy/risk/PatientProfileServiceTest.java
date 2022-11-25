@@ -3,6 +3,7 @@ package com.mediscreen.abernathy.risk;
 import com.mediscreen.abernathy.risk.dto.PatientDTO;
 import com.mediscreen.abernathy.risk.exception.PatientNotFoundException;
 import com.mediscreen.abernathy.risk.proxy.PatientProxy;
+import com.mediscreen.abernathy.risk.service.DiabetesService;
 import com.mediscreen.abernathy.risk.service.PatientProfileService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,6 +29,9 @@ public class PatientProfileServiceTest {
 
     @Mock
     PatientProxy patientProxy;
+
+    @Mock
+    DiabetesService diabetesService;
 
     @Test
     void when_find_by_id_then_success() {

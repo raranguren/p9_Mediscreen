@@ -34,6 +34,7 @@ public class PatientProxy {
     }
 
     public Optional<PatientDTO> findByFamilyName(String familyName) {
+        if (familyName == null) return Optional.empty();
         // reading all the patients because a search by surname is not implemented in the API
         var firstMatch = client.get().uri("patient/list")
                 .retrieve().bodyToFlux(PatientDTO.class)

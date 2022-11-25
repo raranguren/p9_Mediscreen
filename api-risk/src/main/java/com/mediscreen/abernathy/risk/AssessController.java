@@ -17,20 +17,26 @@ public class AssessController {
         this.service = service;
     }
 
-    @PostMapping(path = "assess/id", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String assessmentByIdUrlEncoded(Long patId) {
-        return service.getReport(patId).toString();
-    }
+    // JSON handlers
 
-    @PostMapping("assess/id/{patId}")
-    public AssessmentDTO assessment(@PathVariable Long patId) {
+    @GetMapping("assess/id/{patId}")
+    public AssessmentDTO assessById(@PathVariable Long patId) {
         return service.getReport(patId);
     }
 
-    @PostMapping(path = "assess/familyName", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    public String assessmentByIdUrlEncoded(String family) {
-        return service.getReport(family).toString();
+    // HTML FORM handlers
+
+    @PostMapping(path = "assess/id", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String assesByIdUrlEncoded(Long patId) {
+        return service.getReport(patId).toString();
     }
+
+    @PostMapping(path = "assess/familyName", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String assessByFamilyNameUrlEncoded(String familyName) {
+        return service.getReport(familyName).toString();
+    }
+
+    // Error 404 when patient not found
 
     @ExceptionHandler(PatientNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
