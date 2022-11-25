@@ -1,6 +1,6 @@
 package com.mediscreen.abernathy.risk;
 
-import com.mediscreen.abernathy.risk.domain.Assessment;
+import com.mediscreen.abernathy.risk.dto.AssessmentDTO;
 import com.mediscreen.abernathy.risk.exception.PatientNotFoundException;
 import com.mediscreen.abernathy.risk.service.AssessmentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class AssessController {
     }
 
     @PostMapping("assess/id/{patId}")
-    public Assessment assessment(@PathVariable Long patId) {
+    public AssessmentDTO assessment(@PathVariable Long patId) {
         return service.getReport(patId);
     }
 

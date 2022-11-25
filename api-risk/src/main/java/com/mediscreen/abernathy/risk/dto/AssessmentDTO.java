@@ -1,8 +1,8 @@
-package com.mediscreen.abernathy.risk.domain;
+package com.mediscreen.abernathy.risk.dto;
 
 import com.mediscreen.abernathy.risk.RiskLevel;
 
-public class Assessment {
+public class AssessmentDTO {
 
     public String given;
     public String family;

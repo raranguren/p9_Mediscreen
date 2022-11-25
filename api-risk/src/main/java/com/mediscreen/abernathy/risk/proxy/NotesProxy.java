@@ -26,7 +26,7 @@ public class NotesProxy {
                 .build();
     }
 
-    public List<String> readNotesByPatientId(Long patId) {
+    public List<String> readNoteStringsByPatientId(Long patId) {
         return client.get().uri("patHistory/patient/" + patId)
                 .retrieve().bodyToFlux(NoteDTO.class)
                 .onErrorComplete()
