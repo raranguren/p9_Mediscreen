@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.time.DateTimeException;
 import java.time.Period;
 
+import static com.mediscreen.abernathy.risk.service.NoteAnalysisService.DIABETES_TRIGGERS;
 import static java.time.LocalDate.now;
 import static java.time.LocalDate.parse;
 
@@ -17,11 +18,11 @@ import static java.time.LocalDate.parse;
 public class PatientProfileService {
 
     private final PatientProxy patientProxy;
-    private final DiabetesService diabetesService;
+    private final NoteAnalysisService noteAnalysisService;
     @Autowired
-    public PatientProfileService(PatientProxy patientProxy, DiabetesService diabetesService) {
+    public PatientProfileService(PatientProxy patientProxy, NoteAnalysisService noteAnalysisService) {
         this.patientProxy = patientProxy;
-        this.diabetesService = diabetesService;
+        this.noteAnalysisService = noteAnalysisService;
     }
 
     public PatientProfile readById(Long patId) {
@@ -41,7 +42,7 @@ public class PatientProfileService {
         profile.family = patient.family;
         profile.given = patient.given;
         profile.age = ageFromDateString(patient.dob);
-        profile.diabetesTriggerCount = diabetesService.getTriggerCount(patient.id);
+        profile.diabetesTriggerCount = noteAnalysisService.getTriggerCount(patient.id, DIABETES_TRIGGERS);
         return profile;
     }
 
