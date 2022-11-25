@@ -10,13 +10,17 @@ import org.springframework.stereotype.Service;
 
 import java.time.DateTimeException;
 import java.time.Period;
+import java.util.List;
 
-import static com.mediscreen.abernathy.risk.service.NoteAnalysisService.DIABETES_TRIGGERS;
 import static java.time.LocalDate.now;
 import static java.time.LocalDate.parse;
 
 @Service
 public class PatientProfileService {
+
+    private static final List<String> DIABETES_TRIGGERS = List.of(
+            "Hémoglobine A1C", "Microalbumine", "Taille", "Poids", "Fumeur",
+            "Anormal", "Cholestérol", "Vertige", "Rechute", "Réaction", "Anticorps");
 
     private final PatientProxy patientProxy;
     private final NoteAnalysisService noteAnalysisService;

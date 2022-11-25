@@ -12,10 +12,6 @@ import static io.netty.util.AsciiString.containsIgnoreCase;
 @Service
 public class NoteAnalysisService {
 
-    public static final List<String> DIABETES_TRIGGERS = List.of(
-            "Hémoglobine A1C", "Microalbumine", "Taille", "Poids", "Fumeur",
-            "Anormal", "Cholestérol", "Vertige", "Rechute", "Réaction", "Anticorps");
-
     private final NotesProxy notesProxy;
     @Autowired
     public NoteAnalysisService(NotesProxy notesProxy) {

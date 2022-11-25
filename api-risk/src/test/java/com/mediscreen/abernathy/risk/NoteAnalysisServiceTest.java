@@ -10,7 +10,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static com.mediscreen.abernathy.risk.service.NoteAnalysisService.DIABETES_TRIGGERS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
@@ -51,7 +50,7 @@ public class NoteAnalysisServiceTest {
 
     @Test
     void when_no_match_then_count_zero() {
-        int result = service.getTriggerCount(2L, DIABETES_TRIGGERS);
+        int result = service.getTriggerCount(2L, List.of("aaa"));
         assertEquals(0, result);
     }
 
