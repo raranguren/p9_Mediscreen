@@ -7,4 +7,6 @@ public class PatientDTO {
     public String given;
     public String dob;
 
+    public String sex;
+
 }

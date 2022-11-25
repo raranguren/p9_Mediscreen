@@ -1,6 +1,7 @@
 package com.mediscreen.abernathy.risk.service;
 
 import com.mediscreen.abernathy.risk.domain.PatientProfile;
+import com.mediscreen.abernathy.risk.domain.Sex;
 import com.mediscreen.abernathy.risk.dto.PatientDTO;
 import com.mediscreen.abernathy.risk.exception.PatientNotFoundException;
 import com.mediscreen.abernathy.risk.proxy.PatientProxy;
@@ -42,6 +43,7 @@ public class PatientProfileService {
         profile.family = patient.family;
         profile.given = patient.given;
         profile.age = ageFromDateString(patient.dob);
+        profile.sex = "M".equals(patient.sex) ? Sex.MALE : Sex.FEMALE;
         profile.diabetesTriggerCount = noteAnalysisService.getTriggerCount(patient.id, DIABETES_TRIGGERS);
         return profile;
     }

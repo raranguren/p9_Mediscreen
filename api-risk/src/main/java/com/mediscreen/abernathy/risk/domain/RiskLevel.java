@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.risk;
+package com.mediscreen.abernathy.risk.domain;
 
 public enum RiskLevel {
     RISK_NONE {

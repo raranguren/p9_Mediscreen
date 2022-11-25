@@ -1,6 +1,7 @@
 package com.mediscreen.abernathy.risk.service;
 
 import com.mediscreen.abernathy.risk.domain.PatientProfile;
+import com.mediscreen.abernathy.risk.domain.RiskLevel;
 import com.mediscreen.abernathy.risk.dto.AssessmentDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,12 @@ public class AssessmentService {
     }
 
     public AssessmentDTO generateReport(PatientProfile patientProfile) {
-
-        // TODO build report based on age, sex and
-        return new AssessmentDTO();
+        var report = new AssessmentDTO();
+        report.given = patientProfile.given;
+        report.family = patientProfile.family;
+        report.age = patientProfile.age;
+        report.diabetesRisk = RiskLevel.RISK_NONE; // TODO calculateRisk()
+        return report;
     }
 
 }
