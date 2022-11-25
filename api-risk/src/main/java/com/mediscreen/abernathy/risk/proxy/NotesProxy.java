@@ -2,7 +2,7 @@ package com.mediscreen.abernathy.risk.proxy;
 
 import com.mediscreen.abernathy.risk.dto.NoteDTO;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import javax.annotation.PostConstruct;
@@ -11,7 +11,7 @@ import java.util.List;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@Service
+@Component
 public class NotesProxy {
 
     @Value("${api-notes-url}")
