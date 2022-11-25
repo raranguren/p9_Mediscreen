@@ -3,6 +3,7 @@ package com.mediscreen.abernathy.web.controller;
 import com.mediscreen.abernathy.web.dto.Note;
 import com.mediscreen.abernathy.web.service.NotesService;
 import com.mediscreen.abernathy.web.service.PatientService;
+import com.mediscreen.abernathy.web.service.RiskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,10 +16,12 @@ public class HistoryController {
 
     private final PatientService patientService;
     private final NotesService notesService;
+    private final RiskService riskService;
     @Autowired
-    public HistoryController(PatientService patientService, NotesService notesService) {
+    public HistoryController(PatientService patientService, NotesService notesService, RiskService riskService) {
         this.patientService = patientService;
         this.notesService = notesService;
+        this.riskService = riskService;
     }
 
     @GetMapping("/history")
@@ -31,6 +34,7 @@ public class HistoryController {
         model.addAttribute("patients", patientService.readAll());
         model.addAttribute("selectedId", patId);
         model.addAttribute("notes", notesService.readByPatientId(patId));
+        model.addAttribute("risk", riskService.getRiskReport(patId));
         return "history/list";
     }
 

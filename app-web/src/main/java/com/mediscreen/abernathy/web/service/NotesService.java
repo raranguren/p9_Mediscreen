@@ -5,6 +5,7 @@ import com.mediscreen.abernathy.web.proxy.NotesProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ public class NotesService {
     }
 
     public List<Note> readByPatientId(Long patId) {
+        if (patId == null) return Collections.emptyList();
         return api.readByPatientId(patId);
     }
 

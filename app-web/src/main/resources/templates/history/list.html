@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr" xmlns:th="http://www.thymeleaf.org">
 <head th:insert="fragments :: html_head(~{ :: title})">
-    <title>Historique de notes</title>
+    <title>Historique médical</title>
 </head>
 <body>
 
 <nav th:insert="fragments :: nav"></nav>
 
-<div th:insert="fragments :: card('Historique des notes', ~{ :: .card-content})">
+<div th:insert="fragments :: card('Historique médical', ~{ :: .card-content})">
     <section class="card-content" style="max-width: 50em">
         <form method="get">
             <select class="form-select" aria-label="Sélection du patient"
@@ -21,6 +21,25 @@
                 ></option>
             </select>
         </form>
+
+        <div th:if="${risk}" class="p-4 d-inline-flex">
+            <div class="alert">
+                <strong>Patient :</strong> <span th:text="${risk.given}"></span> <span th:text="${risk.family}"></span>
+                ( âge <span th:text="${risk.age}"></span>)
+            </div>
+            <div th:if="${risk.diabetesRisk=='NONE'}" class="alert alert-success">
+                L'évaluation du diabète est : aucun risque
+            </div>
+            <div th:if="${risk.diabetesRisk=='BORDERLINE'}" class="alert alert-info">
+                L'évaluation du diabète est : risque limité
+            </div>
+            <div th:if="${risk.diabetesRisk=='IN_DANGER'}" class="alert alert-warning">
+                L'évaluation du diabète est : en danger
+            </div>
+            <div th:if="${risk.diabetesRisk=='EARLY_ONSET'}" class="alert alert-danger">
+                L'évaluation du diabète est : apparition précoce
+            </div>
+        </div>
 
         <form method="post"
               th:if="${selectedId}"
@@ -53,7 +72,7 @@
                         <input type="hidden" name="patId" th:value="${selectedId}" />
                     </td>
                     <td>
-                        <input type="submit" class="btn btn-sm btn-primary" value="Ajouter" />
+                        <input type="submit" class="btn btn-lg btn-primary" value="Ajouter" />
                     </td>
                 </tr>
                 </tbody>
