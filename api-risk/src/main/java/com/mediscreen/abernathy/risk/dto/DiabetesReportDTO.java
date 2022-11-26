@@ -2,7 +2,7 @@ package com.mediscreen.abernathy.risk.dto;
 
 import com.mediscreen.abernathy.risk.domain.RiskLevel;
 
-public class AssessmentDTO {
+public class DiabetesReportDTO {
 
     public String given;
     public String family;

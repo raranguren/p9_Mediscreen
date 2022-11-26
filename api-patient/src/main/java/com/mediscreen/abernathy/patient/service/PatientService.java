@@ -1,5 +1,8 @@
-package com.mediscreen.abernathy.patient;
+package com.mediscreen.abernathy.patient.service;
 
+import com.mediscreen.abernathy.patient.domain.Patient;
+import com.mediscreen.abernathy.patient.dto.PatientDTO;
+import com.mediscreen.abernathy.patient.repository.PatientRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,5 +1,6 @@
-package com.mediscreen.abernathy.notes;
+package com.mediscreen.abernathy.notes.repository;
 
+import com.mediscreen.abernathy.notes.domain.Note;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 

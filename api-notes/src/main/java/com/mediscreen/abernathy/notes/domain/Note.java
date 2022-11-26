@@ -1,4 +1,4 @@
-package com.mediscreen.abernathy.notes;
+package com.mediscreen.abernathy.notes.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

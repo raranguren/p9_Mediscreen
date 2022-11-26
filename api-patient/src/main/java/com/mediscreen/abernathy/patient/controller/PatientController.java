@@ -1,5 +1,7 @@
-package com.mediscreen.abernathy.patient;
+package com.mediscreen.abernathy.patient.controller;
 
+import com.mediscreen.abernathy.patient.service.PatientService;
+import com.mediscreen.abernathy.patient.dto.PatientDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

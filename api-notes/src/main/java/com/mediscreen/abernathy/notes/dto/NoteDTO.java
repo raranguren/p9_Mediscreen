@@ -1,5 +1,6 @@
-package com.mediscreen.abernathy.notes;
+package com.mediscreen.abernathy.notes.dto;
 
+import com.mediscreen.abernathy.notes.domain.Note;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

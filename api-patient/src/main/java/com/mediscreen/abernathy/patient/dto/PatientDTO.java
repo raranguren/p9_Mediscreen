@@ -1,5 +1,6 @@
-package com.mediscreen.abernathy.patient;
+package com.mediscreen.abernathy.patient.dto;
 
+import com.mediscreen.abernathy.patient.domain.Patient;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.annotation.Validated;

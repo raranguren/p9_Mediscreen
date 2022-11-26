@@ -3,7 +3,7 @@ package com.mediscreen.abernathy.risk.service;
 import com.mediscreen.abernathy.risk.domain.PatientProfile;
 import com.mediscreen.abernathy.risk.domain.RiskLevel;
 import com.mediscreen.abernathy.risk.domain.Sex;
-import com.mediscreen.abernathy.risk.dto.AssessmentDTO;
+import com.mediscreen.abernathy.risk.dto.DiabetesReportDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,24 +11,24 @@ import static com.mediscreen.abernathy.risk.domain.RiskLevel.*;
 import static com.mediscreen.abernathy.risk.domain.Sex.MALE;
 
 @Service
-public class AssessmentService {
+public class ReportService {
 
     private final PatientProfileService patientService;
     @Autowired
-    public AssessmentService(PatientProfileService patientProfileService) {
+    public ReportService(PatientProfileService patientProfileService) {
         this.patientService = patientProfileService;
     }
 
-    public AssessmentDTO getReport(Long patId) {
+    public DiabetesReportDTO getReport(Long patId) {
         return generateReport(patientService.readById(patId));
     }
 
-    public AssessmentDTO getReport(String family) {
+    public DiabetesReportDTO getReport(String family) {
         return generateReport(patientService.readByFamilyName(family));
     }
 
-    public AssessmentDTO generateReport(PatientProfile patient) {
-        var report = new AssessmentDTO();
+    public DiabetesReportDTO generateReport(PatientProfile patient) {
+        var report = new DiabetesReportDTO();
         report.given = patient.given;
         report.family = patient.family;
         report.age = patient.age;
