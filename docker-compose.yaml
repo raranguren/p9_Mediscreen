@@ -4,10 +4,13 @@ volumes:
   mediscreen-mongodb:
 
 networks:
-  front:
+  web:
   back:
+  data:
 
 services:
+
+  # FRONT-END LAYER
 
   8080_web:
     build:
@@ -20,8 +23,10 @@ services:
     expose:
       - 8080
     networks:
-      - front
+      - web
       - back
+
+  # BACK-END / SERVICES LAYER
 
   8081_patient:
     depends_on:
@@ -35,6 +40,7 @@ services:
       - "8081:8081"
     networks:
       - back
+      - data
 
   8082_notes:
     depends_on:
@@ -48,6 +54,7 @@ services:
       - "8082:8082"
     networks:
       - back
+      - data
 
   8083_risk:
     build:
@@ -60,6 +67,8 @@ services:
     networks:
       - back
 
+  # DATABASES LAYER
+
   db:
     build:
       context: .
@@ -71,9 +80,9 @@ services:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: mediscreen
     ports:
-      - "127.0.0.1:3308:3306" #exposed only in localhost
+      - "3308:3306"
     networks:
-      - back
+      - data
 
   8084-admin-db:
     depends_on:
@@ -82,9 +91,9 @@ services:
     container_name: adminer
     restart: always
     ports:
-      - "127.0.0.1:8084:8080" #exposed only in localhost
+      - "127.0.0.1:8084:8080" #ADMIN tool exposed only in localhost
     networks:
-      - back
+      - data
 
   mongo:
     image: mongo
@@ -95,7 +104,7 @@ services:
     ports:
       - "27017:27017"
     networks:
-      - back
+      - data
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: rootpassword
@@ -108,9 +117,9 @@ services:
     container_name: mongo-express
     restart: always
     ports:
-      - "127.0.0.1:8085:8081"
+      - "127.0.0.1:8085:8081" #ADMIN tool exposed only in localhost
     networks:
-      - back
+      - data
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: rootpassword

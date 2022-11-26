@@ -1,0 +1,26 @@
+@startuml
+nwdiag {
+    network web {
+        color = palegreen
+        app-web [shape = "node"]
+    }
+    network back {
+        app-web
+        api-risk [shape = "node"]
+        api-patient [shape = "node"]
+        api-notes [shape = "node"]
+    }
+    network data {
+        api-patient
+        api-notes
+        mysql [shape = "database"]
+        mongodb [shape = "database"]
+        group {
+            color = "LightSteelBlue"
+            description = "ADMIN"
+            adminer [shape = "node"]
+            mongo-express [shape = "node"]
+        }
+    }
+}
+@enduml
