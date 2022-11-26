@@ -21,7 +21,7 @@ public class PatientController {
         this.service = service;
     }
 
-    @GetMapping("/patient")
+    @GetMapping({"/", "/patient"})
     public String baseDir() {
         return "redirect:/patient/list";
     }

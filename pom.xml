@@ -54,6 +54,7 @@
     <build>
         <plugins>
             <plugin>
+                <!-- Includes a main manifest attribute in JAR files (so they can run) -->
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>

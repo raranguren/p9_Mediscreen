@@ -2,6 +2,20 @@
 
 A learning exercise about separating features into microservices.
 
+## Running the demo
+#### Requirements:
+- Docker
+- Docker-Compose
+#### Run commands:
+```
+docker-compose build
+docker-compose up --no-start
+docker-compose start
+data-setup/sample-data.sh
+```
+#### Home screen:
+Browse to http://localhost:8080
+
 ## Technical specifications
 
 The project uses the following technologies:
@@ -12,6 +26,8 @@ The project uses the following technologies:
 - Bootstrap 5
 - MySQL
 - MongoDB
+- Docker
+- Docker Compose
 
 ## Project structure
 
@@ -93,4 +109,3 @@ These images can be used to build containerized services. The file [docker-compo
 Note that port 8080 is exposed so that clients outside of the networks can access the server. Ports 8084 and 8085 are for admin tools and are only visible to the machine that hosts the containers (not to other containers in the "data" network).
 
 ![](docs/docker-compose.png)
-
