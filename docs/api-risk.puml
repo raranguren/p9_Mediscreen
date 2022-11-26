@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+package api-risk <<node>> {
+    class AssessController <1>
+    class NoteAnalysisService <1>
+    class PatientProfileService <1>
+    class ReportService <1>
+    class PatientProxy
+    class NotesProxy
+    AssessController <.. ReportService
+    ReportService <. PatientProfileService
+    PatientProfileService <.. PatientProxy
+    PatientProfileService <. NoteAnalysisService
+    NoteAnalysisService <.. NotesProxy
+}
+package api-patient <<node>> {
+}
+package api-notes <<node>> {
+}
+() "port\n8083"
+"port\n8083" .. AssessController
+NotesProxy .. "api-notes"
+PatientProxy .. "api-patient"
+
+@enduml

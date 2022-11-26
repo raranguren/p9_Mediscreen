@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+
+package api-patient <<node>> {
+    class PatientController <1>
+    interface PatientRepository
+    class PatientService <1>
+    PatientController <.. PatientService
+    PatientService <.. PatientRepository
+}
+package MySQL <<database>> {
+}
+PatientRepository .. MySQL
+() "port\n8081"
+"port\n8081" .. PatientController
+
+@enduml

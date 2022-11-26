@@ -1,0 +1,17 @@
+@startuml
+left to right direction
+
+package api-notes <<node>> {
+    class PatientHistoryController <1>
+    interface NoteRepository
+    class NoteService <1>
+    PatientHistoryController <.. NoteService
+    NoteService <.. NoteRepository
+}
+package MongoDB <<database>> {
+}
+NoteRepository .. MongoDB
+() "port\n8082"
+"port\n8082" .. PatientHistoryController
+
+@enduml

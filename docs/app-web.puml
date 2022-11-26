@@ -1,0 +1,45 @@
+@startuml
+left to right direction
+
+package app-web <<node>> {
+    class HistoryController <1>
+    class PatientController <1>
+    class NotesProxy <1>
+    class PatientProxy <1>
+    class RiskProxy <1>
+    class NotesService <1>
+    class PatientService <1>
+    class RiskService <1>
+    PatientController <.. PatientService
+    HistoryController <.. PatientService
+    HistoryController <.. NotesService
+    HistoryController <.. RiskService
+    RiskService <.. RiskProxy
+    NotesService <.. NotesProxy
+    PatientService <.. PatientProxy
+}
+
+package api-patient <<Node>> {
+}
+package api-notes <<Node>> {
+}
+package api-risk <<Node>> {
+}
+package MySQL <<database>> {
+}
+package MongoDB <<database>> {
+}
+package "port\n8080" <<cloud>> {
+}
+"port\n8080" .. HistoryController
+"port\n8080" .. PatientController
+
+PatientProxy .. "api-patient"
+NotesProxy .. "api-notes"
+RiskProxy .. "api-risk"
+"api-notes" .. MongoDB
+"api-patient" .. MySQL
+"api-risk" . "api-patient"
+"api-notes" . "api-risk"
+
+@enduml
