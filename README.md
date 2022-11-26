@@ -11,11 +11,10 @@ A learning exercise about separating features into microservices.
 docker-compose build
 docker-compose up --no-start
 docker-compose start
-data-setup/sample-data.sh
+sh data-setup/sample-data.sh
 ```
 #### Home screen:
 Browse to http://localhost:8080
-
 ## Technical specifications
 
 The project uses the following technologies:
@@ -109,3 +108,7 @@ These images can be used to build containerized services. The file [docker-compo
 Note that port 8080 is exposed so that clients outside of the networks can access the server. Ports 8084 and 8085 are for admin tools and are only visible to the machine that hosts the containers (not to other containers in the "data" network).
 
 ![](docs/docker-compose.png)
+
+## Test coverage
+
+Each module generates a `target/site/jacoco/index.html` showing the test coverage.
