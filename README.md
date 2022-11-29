@@ -31,16 +31,16 @@ The project uses the following technologies:
 ## Project structure
 
 The main application is in the module "app-web". It implements an internal website that the employees of the clinic can use to manage patient visits. It connects to the other modules and generates the UI needed for the user to interact with the data:
-![](docs/app-web.png)
+![](docs/uml/app-web.png)
 
 The "patient" API specializes in patient profiles (name, phone number, etc.). It uses a relational database.
-![](docs/api-patient.png)
+![](docs/uml/api-patient.png)
 
 The "notes" API has CRUD endpoints for the notes writen after each visit to the clinic. Because the notes don't have a size limit, it stores the documents in a non-relational database.
-![](docs/api-notes.png)
+![](docs/uml/api-notes.png)
 
 Finally, the "risk" API offers a service to analyze the data in the other two databases, and produce an assessment report:
-![](docs/api-risk.png)
+![](docs/uml/api-risk.png)
 
 ## API Documentation
 
@@ -107,8 +107,13 @@ These images can be used to build containerized services. The file [docker-compo
 
 Note that port 8080 is exposed so that clients outside of the networks can access the server. Ports 8084 and 8085 are for admin tools and are only visible to the machine that hosts the containers (not to other containers in the "data" network).
 
-![](docs/docker-compose.png)
+![](docs/uml/docker-compose.png)
 
 ## Test coverage
 
-Each module generates a `target/site/jacoco/index.html` showing the test coverage.
+Each module generates a `target/site/jacoco/index.html` showing the test coverage. Note that the unit tests implemented are for the **service layer** only.
+
+![](docs/jacoco/jacoco-web.png)
+![](docs/jacoco/jacoco-patient.png)
+![](docs/jacoco/jacoco-notes.png)
+![](docs/jacoco/jacoco-risk.png)
